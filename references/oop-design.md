@@ -4,6 +4,8 @@ Use this guide during architecture planning. These are redMage's engineering jud
 
 Start with a direct function or cohesive module. Add a pattern only when it buys a named requirement. A pattern does not require a class in languages with first-class functions. Respect repository conventions and abstraction thresholds. These are object-design choices; consult Protect's separate catalogs for distributed systems, storage and resilience.
 
+For deeper comparisons, file shapes and tested examples, read [pattern deep dives](pattern-deep-dives.md) for the shortlisted candidates.
+
 ## Selection table
 
 | Approach | Pick when / observed pressure | Advantages | Costs / reject when | Smallest credible shape |
