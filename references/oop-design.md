@@ -2,7 +2,7 @@
 
 Use this guide during architecture planning. These are redMage's engineering judgments and original examples, not copied catalog examples. Read the linked primary pattern page for a shortlisted candidate. If browsing is unavailable, cite this local guide as the basis and disclose that the upstream reference was not checked. Never invent live verification.
 
-Start with a direct function or cohesive module. Add a pattern only when it buys a named requirement. A pattern does not require a class in languages with first-class functions. Respect repository conventions and abstraction thresholds. These are object-design choices; consult grunt's separate catalogs for distributed systems, storage and resilience.
+Start with a direct function or cohesive module. Add a pattern only when it buys a named requirement. A pattern does not require a class in languages with first-class functions. Respect repository conventions and abstraction thresholds. These are object-design choices; consult Protect's separate catalogs for distributed systems, storage and resilience.
 
 ## Selection table
 
