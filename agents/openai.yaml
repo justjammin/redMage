@@ -1,0 +1,4 @@
+interface:
+  display_name: "redMage"
+  short_description: "Requirements, architecture, sliced execution, review"
+  default_prompt: "Use $rdm to clarify this feature, specify its architecture, and implement verified vertical slices with subagents."

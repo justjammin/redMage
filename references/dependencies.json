@@ -1,0 +1,75 @@
+[
+  {
+    "name": "grill-with-docs",
+    "source": {
+      "source": "mattpocock/skills",
+      "skillPath": "skills/engineering/grill-with-docs/SKILL.md"
+    }
+  },
+  {
+    "name": "grilling",
+    "source": {
+      "source": "mattpocock/skills",
+      "skillPath": "skills/productivity/grilling/SKILL.md"
+    }
+  },
+  {
+    "name": "domain-modeling",
+    "source": {
+      "source": "mattpocock/skills",
+      "skillPath": "skills/engineering/domain-modeling/SKILL.md"
+    }
+  },
+  {
+    "name": "to-spec",
+    "source": {
+      "source": "mattpocock/skills",
+      "skillPath": "skills/engineering/to-spec/SKILL.md"
+    }
+  },
+  {
+    "name": "implement",
+    "source": {
+      "source": "mattpocock/skills",
+      "skillPath": "skills/engineering/implement/SKILL.md"
+    }
+  },
+  {
+    "name": "tdd",
+    "source": {
+      "source": "mattpocock/skills",
+      "skillPath": "skills/engineering/tdd/SKILL.md"
+    }
+  },
+  {
+    "name": "code-review",
+    "source": {
+      "source": "mattpocock/skills",
+      "skillPath": "skills/engineering/code-review/SKILL.md"
+    }
+  },
+  {
+    "name": "grunt"
+  },
+  {
+    "name": "writing-plans"
+  },
+  {
+    "name": "executing-plans"
+  },
+  {
+    "name": "subagent-driven-development"
+  },
+  {
+    "name": "using-git-worktrees"
+  },
+  {
+    "name": "finishing-a-development-branch"
+  },
+  {
+    "name": "requesting-code-review"
+  },
+  {
+    "name": "ponytail-review"
+  }
+]
