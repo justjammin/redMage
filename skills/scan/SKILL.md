@@ -5,7 +5,7 @@ description: Use when feature requirements, domain terms, quality targets or con
 
 # 1. Scan
 
-Save this phase's record to `.mage/scan/<slug>.md` in the target project. Reuse the feature slug across phases, create directories as needed, and keep `/.mage/` ignored by Git.
+Save this phase's record to `.mage/<slug>/1-scan.Md` in the target project. Reuse the feature slug across phases, create directories as needed, and keep `/.mage/` ignored by Git.
 
 Identify the target repository and existing work. Read applicable AGENTS.md, persistent project knowledge, glossary, ADRs, relevant code and tests. Use ordinary file reads and text search to trace definitions, imports and callers. Resume from the phase record; use specialized code tools or a tracker only when explicitly configured by the target project.
 

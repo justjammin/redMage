@@ -13,16 +13,16 @@ Read the target project's instructions and existing knowledge. Assume Beads and 
 
 ## Artifact contract
 
-All generated workflow records live in the target project's `.mage/`, including when a phase runs alone. Reuse one feature slug across phases. Create directories when first writing; keep `/.mage/` ignored by Git. Read existing project docs as inputs. Product source, tests and requested shipped documentation use normal project paths.
+All generated workflow records live in the target project's `.mage/`, including when a phase runs alone. Keep the six numbered phase documents together in `.mage/<slug>/`, using one feature slug across phases. Within generated documents, link other phase records by their numbered filenames, such as `2-analyze.Md` and `3-protect.Md`. Create directories when first writing; keep `/.mage/` ignored by Git. Read existing project docs as inputs. Product source, tests and requested shipped documentation use normal project paths.
 
 | Phase | Record |
 |---|---|
-| Scan | `.mage/scan/<slug>.md`, `.mage/CONTEXT.md`, `.mage/adr/` |
-| Analyze | `.mage/analyze/<slug>.md` |
-| Protect | `.mage/protect/<slug>.md` |
-| Chain | `.mage/chain/<slug>.md` |
-| Weave | `.mage/weave/<slug>.md` |
-| Dispel | `.mage/dispel/<slug>.md` |
+| Scan | `.mage/<slug>/1-scan.Md`, `.mage/CONTEXT.md`, `.mage/adr/` |
+| Analyze | `.mage/<slug>/2-analyze.Md` |
+| Protect | `.mage/<slug>/3-protect.Md` |
+| Chain | `.mage/<slug>/4-chain.Md` |
+| Weave | `.mage/<slug>/5-weave.Md` |
+| Dispel | `.mage/<slug>/6-dispel.Md` |
 
 ## Workflow
 

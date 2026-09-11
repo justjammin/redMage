@@ -5,9 +5,9 @@ description: Use when agreed requirements need a specification with observable a
 
 # 2. Analyze
 
-Save this phase's record to `.mage/analyze/<slug>.md` in the target project. Reuse the feature slug across phases, create directories as needed, and keep `/.mage/` ignored by Git.
+Save this phase's record to `.mage/<slug>/2-analyze.Md` in the target project. Reuse the feature slug across phases, create directories as needed, and keep `/.mage/` ignored by Git.
 
-Synthesize the conversation and codebase understanding. Use the glossary and respect ADRs. If a material decision is missing, return it to [Scan](../scan/SKILL.md); do not invent an answer. Use already agreed behavior seams; confirm genuinely new seams before planning tests.
+Read `.mage/<slug>/1-scan.Md` and synthesize it with the conversation and codebase understanding. Use the glossary and respect ADRs. If a material decision is missing, return it to [Scan](../scan/SKILL.md); do not invent an answer. Use already agreed behavior seams; confirm genuinely new seams before planning tests.
 
 The phase record is the specification. Include:
 

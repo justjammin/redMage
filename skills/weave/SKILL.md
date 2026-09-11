@@ -5,11 +5,11 @@ description: Use when an approved implementation plan is ready for execution wit
 
 # 5. Weave
 
-Save this phase's record to `.mage/weave/<slug>.md` in the target project. Reuse the feature slug across phases, create directories as needed, and keep `/.mage/` ignored by Git.
+Save this phase's record to `.mage/<slug>/5-weave.Md` in the target project. Reuse the feature slug across phases, create directories as needed, and keep `/.mage/` ignored by Git.
 
 ## Execution context
 
-Read the spec, architecture and complete plan. Check branch, dirty files and resume records before changes. Use an existing isolated worktree or create one on a task branch; preserve user changes. Never implement on main/master without explicit consent. Resolve gaps against the spec; return scope or consequential requirement changes to Scan/Protect. Subagents are required: if unavailable, report the blocked mode rather than silently executing inline.
+Read `.mage/<slug>/2-analyze.Md`, `.mage/<slug>/3-protect.Md` and the complete plan at `.mage/<slug>/4-chain.Md`. Check branch, dirty files and resume records before changes. Use an existing isolated worktree or create one on a task branch; preserve user changes. Never implement on main/master without explicit consent. Resolve gaps against the spec; return scope or consequential requirement changes to Scan/Protect. Subagents are required: if unavailable, report the blocked mode rather than silently executing inline.
 
 Record base commit, worktree, slice status, completed commits, review evidence and verification results in the phase record. Mirror status in the project tracker if configured. Resume completed slices without rerunning them. Before dispatch, confirm dependency slices and exact interface versions. Default to sequential execution; parallelize only disjoint files with settled interfaces. Serialize Git commits in shared checkouts; use separate worktrees if parallel Git writes are needed.
 

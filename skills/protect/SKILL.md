@@ -5,9 +5,9 @@ description: Use when a specification needs architecture decisions or a proposed
 
 # 3. Protect
 
-Save this phase's record to `.mage/protect/<slug>.md` in the target project. Reuse the feature slug across phases, create directories as needed, and keep `/.mage/` ignored by Git.
+Save this phase's record to `.mage/<slug>/3-protect.Md` in the target project. Reuse the feature slug across phases, create directories as needed, and keep `/.mage/` ignored by Git.
 
-The phase record contains architecture and review findings. Describe the simplest design satisfying the spec before adding patterns. Include:
+Read the specification at `.mage/<slug>/2-analyze.Md`. The phase record contains architecture and review findings. Describe the simplest design satisfying the spec before adding patterns. Include:
 
 - Entities, state transitions/invariants, interfaces, storage and request/data flow as applicable.
 - Proposed file tree with create/modify/existing markers and one responsibility per touched file. Follow existing conventions; group cohesive features and avoid unrelated restructuring.

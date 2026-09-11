@@ -5,9 +5,9 @@ description: Use when a settled specification and architecture need an actionabl
 
 # 4. Chain
 
-Save this phase's record to `.mage/chain/<slug>.md` in the target project. Reuse the feature slug across phases, create directories as needed, and keep `/.mage/` ignored by Git.
+Save this phase's record to `.mage/<slug>/4-chain.Md` in the target project. Reuse the feature slug across phases, create directories as needed, and keep `/.mage/` ignored by Git.
 
-Use the local planning contract below. The phase record is the implementation plan. Carry the spec, architecture and global constraints into the plan header. Map every accepted FR/NFR to at least one slice and a verification step.
+Read `.mage/<slug>/2-analyze.Md` and `.mage/<slug>/3-protect.Md`. Use the local planning contract below. The phase record is the implementation plan. Carry the spec, architecture and global constraints into the plan header. Map every accepted FR/NFR to at least one slice and a verification step.
 
 A slice delivers independently testable behavior across the necessary layers. Fold scaffolding, migration and documentation into the behavior that needs them; do not split work into disconnected database/backend/UI chores. Each slice names:
 

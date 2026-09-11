@@ -5,7 +5,7 @@ description: Use when reviewing a diff or directory for over-engineering, unnece
 
 # 6. Dispel
 
-Save this phase's record to `.mage/dispel/<slug>.md` in the target project. Reuse the feature slug across phases, create directories as needed, and keep `/.mage/` ignored by Git.
+Save this phase's record to `.mage/<slug>/6-dispel.Md` in the target project. Reuse the feature slug across phases, create directories as needed, and keep `/.mage/` ignored by Git.
 
 Read [the principles reference](references/principles.md) once before starting if you
 haven't already this run. It is the canonical source for tags, lens precedence, the

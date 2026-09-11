@@ -75,14 +75,14 @@ Each phase saves its working documents under `.mage/` in the target project:
 
 | Phase | Output |
 |---|---|
-| Scan | `.mage/scan/<slug>.md`, `.mage/CONTEXT.md`, `.mage/adr/` |
-| Analyze | `.mage/analyze/<slug>.md` |
-| Protect | `.mage/protect/<slug>.md` |
-| Chain | `.mage/chain/<slug>.md` |
-| Weave | `.mage/weave/<slug>.md` |
-| Dispel | `.mage/dispel/<slug>.md` |
+| Scan | `.mage/<slug>/1-scan.Md`, `.mage/CONTEXT.md`, `.mage/adr/` |
+| Analyze | `.mage/<slug>/2-analyze.Md` |
+| Protect | `.mage/<slug>/3-protect.Md` |
+| Chain | `.mage/<slug>/4-chain.Md` |
+| Weave | `.mage/<slug>/5-weave.Md` |
+| Dispel | `.mage/<slug>/6-dispel.Md` |
 
-Use the same feature slug across phases. Keep `/.mage/` ignored by Git so decisions, plans and review evidence remain local. Product source, tests and explicitly requested shipped documentation stay in their normal project locations. Existing project knowledge remains readable without being moved or rewritten.
+Keep all six numbered phase documents in the same feature folder. References between generated phase documents use the numbered filenames, including the `.Md` extension. Keep `/.mage/` ignored by Git so decisions, plans and review evidence remain local. Product source, tests and explicitly requested shipped documentation stay in their normal project locations. Existing project knowledge remains readable without being moved or rewritten.
 
 Start with the selected skill; no setup script or Python prerequisite is required. Beads and lean-ctx are not required or assumed installed. Ordinary host file, search and shell tools plus `.mage/` records are the default; existing project-configured trackers and code indexes are optional integrations. Weave requires host subagent support for independent implementation and review.
 
