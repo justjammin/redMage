@@ -1,0 +1,10 @@
+{
+  "name": "redMage",
+  "version": "0.4.0",
+  "description": "Requirements, architecture, implementation and review through six bundled skills.",
+  "author": {
+    "name": "justjammin"
+  },
+  "repository": "https://github.com/justjammin/redMage",
+  "skills": "./skills/"
+}

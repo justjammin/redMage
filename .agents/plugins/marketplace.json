@@ -1,0 +1,20 @@
+{
+  "name": "justjammin",
+  "interface": {
+    "displayName": "justjammin"
+  },
+  "plugins": [
+    {
+      "name": "redMage",
+      "source": {
+        "source": "local",
+        "path": "./"
+      },
+      "policy": {
+        "installation": "AVAILABLE",
+        "authentication": "ON_INSTALL"
+      },
+      "category": "Productivity"
+    }
+  ]
+}

@@ -6,13 +6,41 @@
 
 redMage balances the craft of building with the discipline of guarding what matters. Reveal the requirements, shape the plan, summon a coordinated party of agents, and dispel complexity before the final cast. An FFVII-inspired command menu for a workflow that takes an idea through verified implementation.
 
+## Install as a plugin
+
+### Codex
+
+```sh
+codex plugin marketplace add justjammin/redMage
+codex plugin add redMage@justjammin
+```
+
+Start a new task and select `redMage:rdm`. The six phase skills are also available through the skill picker.
+
+### Claude Code
+
+Run inside Claude Code:
+
+```text
+/plugin marketplace add justjammin/redMage
+/plugin install redMage@justjammin
+```
+
+Invoke `/redMage:rdm`, or a phase such as `/redMage:scan`. For a local development session:
+
+```sh
+claude --plugin-dir /absolute/path/to/redMage
+```
+
+Both plugins share the same bundled skills and references. If the repository is still private, installation requires GitHub access; once public, the same commands work without private-repository credentials.
+
 ## Install with npx skills
 
 ```sh
 npx skills add justjammin/redMage --skill rdm --agent codex
 ```
 
-Add `--global` for installation across projects. Omit `--agent codex` to choose another supported agent. This repository is private: the installing account needs repository access and working GitHub/Git authentication. A recipient such as Ninjamin needs access before using this source.
+Add `--global` for installation across projects. Omit `--agent codex` to choose another supported agent. Private-repository installation requires working GitHub/Git authentication.
 
 Then invoke `/rdm` (or `$rdm` in the host's skill selector). The root skill installs the complete bundle, including the six phases, pattern references and preflight script. Do not install `skills/rdm` alone: it is the plugin's internal router and requires sibling files.
 

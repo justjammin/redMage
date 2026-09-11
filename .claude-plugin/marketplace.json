@@ -1,0 +1,14 @@
+{
+  "name": "justjammin",
+  "owner": {
+    "name": "justjammin"
+  },
+  "plugins": [
+    {
+      "name": "redMage",
+      "source": "./",
+      "description": "Requirements, architecture, implementation and review through six bundled skills.",
+      "version": "0.4.0"
+    }
+  ]
+}
