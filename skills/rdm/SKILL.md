@@ -9,7 +9,7 @@ Use `/rdm` for the whole workflow or `redMage:<phase>` for one phase. Resolve bu
 
 ## Working context
 
-Read the target project's instructions and existing knowledge. Use the host's available tools and the project's configured tracker. If no tracker is configured, resume from the phase artifacts. Start directly with the needed phase.
+Read the target project's instructions and existing knowledge. Assume Beads and lean-ctx are absent. Use ordinary host file, search and shell tools; resume decisions and status from `.mage/` phase records. Integrate a tracker or indexed code tools only when the target project explicitly configures them. Do not install or initialize either for this workflow. Start directly with the needed phase.
 
 ## Artifact contract
 

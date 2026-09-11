@@ -11,7 +11,7 @@ Use the local planning contract below. The phase record is the implementation pl
 
 A slice delivers independently testable behavior across the necessary layers. Fold scaffolding, migration and documentation into the behavior that needs them; do not split work into disconnected database/backend/UI chores. Each slice names:
 
-- Slice ID, tracker ID, requirement IDs and complete acceptance criteria.
+- Slice ID, requirement IDs and complete acceptance criteria. Include a tracker ID only when an existing tracker supplies one.
 - Exact owned create/modify/test paths and bounded responsibility.
 - Prerequisite slices and exact consumed/produced interfaces.
 - Concrete implementation steps, code, test cases, commands and expected results following the planning contract; pre-agreed TDD seams and justified exceptions.
@@ -28,5 +28,5 @@ Before tasks, show the file map and responsibilities. Each task must be a behavi
 
 At agreed seams, order steps: one failing behavior test, run and confirm relevant failure, minimal implementation, run and confirm success, then scoped commit. Make expected values independent of implementation. Keep each action small and concrete.
 
-Self-review every requirement's task/test coverage, placeholder gaps and cross-task signatures. Track status in the configured repository tracker; without one, record slice status in the phase record. Link the completed plan and proceed to Weave when within confirmed scope. Execution mode is already selected.
+Self-review every requirement's task/test coverage, placeholder gaps and cross-task signatures. Record slice status in the phase record. Mirror it to a tracker only when explicitly configured by the target project. Link the completed plan and proceed to Weave when within confirmed scope. Execution mode is already selected.
 

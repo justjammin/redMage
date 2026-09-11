@@ -84,7 +84,7 @@ Each phase saves its working documents under `.mage/` in the target project:
 
 Use the same feature slug across phases. Keep `/.mage/` ignored by Git so decisions, plans and review evidence remain local. Product source, tests and explicitly requested shipped documentation stay in their normal project locations. Existing project knowledge remains readable without being moved or rewritten.
 
-Start with the selected skill; no setup script or Python prerequisite is required. Use the host's available tools and follow the target project's instructions. Weave requires host subagent support for independent implementation and review.
+Start with the selected skill; no setup script or Python prerequisite is required. Beads and lean-ctx are not required or assumed installed. Ordinary host file, search and shell tools plus `.mage/` records are the default; existing project-configured trackers and code indexes are optional integrations. Weave requires host subagent support for independent implementation and review.
 
 ## Development checks
 
