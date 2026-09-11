@@ -1,11 +1,13 @@
 ---
 name: scan
-description: "redMage:scan \u2014 clarify functional and measurable non-functional requirements, glossary and consequential decisions."
+description: Use when feature requirements, domain terms, quality targets or consequential tradeoffs are unclear.
 ---
 
 # 1. Scan
 
-Identify the target repository and existing work. Read applicable AGENTS.md, persistent project knowledge, glossary, ADRs, relevant code and tests. Prefer available ctx tools: compose first, then architecture/callgraph for exact symbols and affected boundaries. If unavailable, use direct tools and state the limitation. Create or resume tracking using the repository's workflow.
+Save this phase's record to `.mage/scan/<slug>.md` in the target project. Reuse the feature slug across phases, create directories as needed, and keep `/.mage/` ignored by Git.
+
+Identify the target repository and existing work. Read applicable AGENTS.md, persistent project knowledge, glossary, ADRs, relevant code and tests. Use available search, read and dependency tools to identify affected boundaries. Follow the configured tracker; without one, resume from the phase record.
 
 Use the interview and domain-documentation method below. Research repository facts yourself; delegate bounded independent fact-finding when useful. Ask only decisions whose prerequisites are settled, give a recommendation and its tradeoff, and wait for answers that dependent work requires. Capture resolved terminology immediately; create ADRs only for consequential tradeoffs.
 
@@ -19,15 +21,15 @@ Consider latency, capacity, consistency, availability, durability, recovery, sec
 
 Discuss entities and invariants, external interfaces, the simplest end-to-end flow, then quality-driven refinements. The interview ends when in-scope requirements, important constraints and testing seams are settled and remaining unknowns are either nonblocking documented assumptions or explicit blockers. Present the concrete summary and test seams for confirmation, honoring confirmation already given. Explain that this is the shared-understanding checkpoint of Scan and the test-seam handoff to Analyze.
 
-Ground this phase in [Hello Interview's delivery framework](https://www.hellointerview.com/learn/system-design/in-a-hurry/delivery). The originally requested [course URL](https://www.hellointerview.com/learn/courses/system-design/lesson/orientation/delivery) may be unavailable; use the public framework and disclose that fallback. Adapt the prioritization and progression to real project work, not interview time limits or fixed requirement counts.
+Ground this phase in [Hello Interview's delivery framework](https://www.hellointerview.com/learn/system-design/in-a-hurry/delivery). Adapt the prioritization and progression to real project work, not interview time limits or fixed requirement counts.
 
 ## Interview and domain documents
 
-Work a decision tree in rounds. Ask only the frontier whose prerequisites are settled; provide a recommended answer and tradeoff for each question. Discover repository facts yourself, using bounded research subagents when useful. Do not ask the human questions the code can answer. Keep independent research moving while waiting on decisions.
+Work a decision tree in rounds. Research repository facts while waiting for decisions; ask the human only questions the code cannot answer.
 
-Challenge terms against the glossary and verify claims against code. Resolve overloaded terms using concrete business scenarios. Capture definitions immediately in CONTEXT.md using [the local format](references/CONTEXT-FORMAT.md). Read CONTEXT-MAP.md first if multiple contexts exist. Keep implementation details out of the glossary.
+Challenge terms against the glossary and verify claims against code. Resolve overloaded terms using concrete business scenarios. Capture definitions immediately in `.mage/CONTEXT.md` using [the local format](references/CONTEXT-FORMAT.md). Read `.mage/CONTEXT-MAP.md` first if multiple contexts exist. Keep implementation details out of the glossary.
 
-Write ADRs only for hard-to-reverse, surprising decisions with real alternatives; use [the ADR format](references/ADR-FORMAT.md). Start numbering at 1. Stop interviewing when the in-scope frontier is settled, not when every imaginable feature has been discussed. Present requirements and testing seams together for confirmation; honor answers and authorization already given.
+Write ADRs in `.mage/adr/` only for hard-to-reverse, surprising decisions with real alternatives; use [the ADR format](references/ADR-FORMAT.md). Start numbering at 1. Stop interviewing when the in-scope frontier is settled, not when every imaginable feature has been discussed. Present requirements and testing seams together for confirmation; honor answers and authorization already given.
 
-Handoff: settled FR/NFR IDs, glossary/ADRs, scope, assumptions and approved seams to [Analyze](../analyze/SKILL.md). Report what is settled, artifact links, next phase and any decision needed.
+Record settled FR/NFR IDs, glossary/ADR links, scope, assumptions and approved seams in the phase record. Hand off to [Analyze](../analyze/SKILL.md). Report what is settled, artifact links, next phase and any decision needed.
 

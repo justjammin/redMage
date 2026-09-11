@@ -1,13 +1,15 @@
 ---
 name: analyze
-description: "redMage:analyze \u2014 synthesize settled requirements into an actionable spec without restarting the interview."
+description: Use when agreed requirements need a specification with observable acceptance criteria.
 ---
 
 # 2. Analyze
 
+Save this phase's record to `.mage/analyze/<slug>.md` in the target project. Reuse the feature slug across phases, create directories as needed, and keep `/.mage/` ignored by Git.
+
 Synthesize the conversation and codebase understanding. Use the glossary and respect ADRs. If a material decision is missing, return it to [Scan](../scan/SKILL.md); do not invent an answer. Use already agreed behavior seams; confirm genuinely new seams before planning tests.
 
-Save `docs/specs/<slug>.md` unless project conventions differ. Include:
+The phase record is the specification. Include:
 
 1. Problem Statement: the user's problem.
 2. Solution: the resulting user experience.
@@ -18,5 +20,5 @@ Save `docs/specs/<slug>.md` unless project conventions differ. Include:
 7. Out of Scope: explicit exclusions.
 8. Further Notes: constraints, dependencies, assumptions and unresolved gaps.
 
-Publish to the configured project tracker within existing authorization; use its actual labels, including ready-for-agent only if defined. Otherwise keep the complete local spec and report publication pending. Never run unrelated setup or guess a project. Record the spec revision and hand off to [Protect](../protect/SKILL.md). Show the artifact and new gaps, not a second interview.
+Publish to the configured project tracker within existing authorization; use its actual labels, including ready-for-agent only if defined. Without a configured tracker, the local spec is the handoff. Never run unrelated setup or guess a project. Record the spec revision and hand off to [Protect](../protect/SKILL.md). Show the artifact and new gaps, not a second interview.
 

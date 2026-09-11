@@ -34,17 +34,7 @@ claude --plugin-dir /absolute/path/to/redMage
 
 Both plugins share the same bundled skills and references. If the repository is still private, installation requires GitHub access; once public, the same commands work without private-repository credentials.
 
-## Install with npx skills
-
-```sh
-npx skills add justjammin/redMage --skill rdm --agent codex
-```
-
-Add `--global` for installation across projects. Omit `--agent codex` to choose another supported agent. Private-repository installation requires working GitHub/Git authentication.
-
-Then invoke `/rdm` (or `$rdm` in the host's skill selector). The root skill installs the complete bundle, including the six phases, pattern references and preflight script. Do not install `skills/rdm` alone: it is the plugin's internal router and requires sibling files.
-
-### Direct local npm installation
+## Install as a local skill bundle
 
 The package now includes `package.json` and a `redmage` executable. From this checkout:
 
@@ -62,7 +52,7 @@ npx redmage install
 
 The executable copies the complete bundle into the current project's `.agents/skills/rdm`. Use `--global` for your personal skills directory, or `--dest /exact/skill/folder` for a custom destination. Existing destinations are preserved; use a fresh destination for testing. No npm lifecycle scripts run, and the executable downloads no dependencies.
 
-This package is available from the checkout/GitHub, not published to the npm registry. The `npx skills add` installation above remains supported.
+This package is available from the checkout/GitHub, not published to the npm registry. Use this installer or the plugin marketplace to retain all sibling skills and shared references; copying `skills/rdm` alone is incomplete. The installer generates its entry from `skills/rdm/SKILL.md`, the single canonical router.
 
 ## The spellbook
 
@@ -79,14 +69,23 @@ You steer the important decisions. redMage keeps the spellbook, coordinates the 
 
 The plugin manifest exposes the phase skills when loaded as a plugin. The npx installer installs the single `rdm` bundle; the workflow loads its phases through relative paths rather than requiring separately registered commands.
 
-## Verify an installation
+## Local workflow artifacts
 
-From the installed `rdm` folder:
+Each phase saves its working documents under `.mage/` in the target project:
 
-```sh
-python3 scripts/dependencies.py
-```
+| Phase | Output |
+|---|---|
+| Scan | `.mage/scan/<slug>.md`, `.mage/CONTEXT.md`, `.mage/adr/` |
+| Analyze | `.mage/analyze/<slug>.md` |
+| Protect | `.mage/protect/<slug>.md` |
+| Chain | `.mage/chain/<slug>.md` |
+| Weave | `.mage/weave/<slug>.md` |
+| Dispel | `.mage/dispel/<slug>.md` |
 
-Expected: seven bundled skills and no missing references. Python 3 is needed for preflight; execution also needs Git and host subagent tools. Node/npm is needed to run the installer.
+Use the same feature slug across phases. Keep `/.mage/` ignored by Git so decisions, plans and review evidence remain local. Product source, tests and explicitly requested shipped documentation stay in their normal project locations. Existing project knowledge remains readable without being moved or rewritten.
 
-The bundle was tested with an actual `npx skills add` copy installation in an isolated project, followed by the installed dependency check. Domain formats, pattern catalogs and examples travel with the bundle.
+Start with the selected skill; no setup script or Python prerequisite is required. Use the host's available tools and follow the target project's instructions. Weave requires host subagent support for independent implementation and review.
+
+## Development checks
+
+Run `npm test` to verify bundle installation, relative phase references and preservation of existing destinations. These are maintainer tests, not a user startup step.

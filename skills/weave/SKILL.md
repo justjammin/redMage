@@ -1,17 +1,21 @@
 ---
 name: weave
-description: "redMage:weave \u2014 execute planned vertical slices with scoped subagents, behavior tests and independent review."
+description: Use when an approved implementation plan is ready for execution with subagents and independent review.
 ---
 
 # 5. Weave
 
-## Controller preflight
+Save this phase's record to `.mage/weave/<slug>.md` in the target project. Reuse the feature slug across phases, create directories as needed, and keep `/.mage/` ignored by Git.
+
+## Execution context
 
 Read the spec, architecture and complete plan. Check branch, dirty files and resume records before changes. Use an existing isolated worktree or create one on a task branch; preserve user changes. Never implement on main/master without explicit consent. Resolve gaps against the spec; return scope or consequential requirement changes to Scan/Protect. Subagents are required: if unavailable, report the blocked mode rather than silently executing inline.
 
-Record base commit, worktree and slice status in the repository tracker, including completed commits and review evidence. Resume completed slices without rerunning them. Before dispatch, confirm dependency slices and exact interface versions. Default to sequential execution; parallelize only disjoint files with settled interfaces. Serialize Git commits in shared checkouts; use separate worktrees if parallel Git writes are needed.
+Record base commit, worktree, slice status, completed commits, review evidence and verification results in the phase record. Mirror status in the project tracker if configured. Resume completed slices without rerunning them. Before dispatch, confirm dependency slices and exact interface versions. Default to sequential execution; parallelize only disjoint files with settled interfaces. Serialize Git commits in shared checkouts; use separate worktrees if parallel Git writes are needed.
 
 ## Worker contract
+
+Pass absolute paths to the originating project's `.mage/` records; ignored files are not copied into new worktrees. Keep the controller's phase record there throughout execution.
 
 Dispatch a fresh worker with this file and [implementation guidance](references/implementation.md), exact slice/plan/spec sections, acceptance criteria and NFRs, owned paths, consumed/produced signatures, dependency commits, test commands and agreed seams. Include: “You are not alone in this codebase. Preserve others' edits and accommodate their changes. Report necessary out-of-scope changes to the controller.”
 

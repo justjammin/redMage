@@ -1,13 +1,13 @@
 ---
 name: protect
-description: "redMage:protect \u2014 choose and challenge architecture, file shapes and patterns using one evidence-grounded skeptic."
+description: Use when a specification needs architecture decisions or a proposed design needs evidence-based review.
 ---
 
 # 3. Protect
 
+Save this phase's record to `.mage/protect/<slug>.md` in the target project. Reuse the feature slug across phases, create directories as needed, and keep `/.mage/` ignored by Git.
 
-
-Write `docs/specs/<slug>-architecture.md` unless project conventions specify another location. Describe the simplest design satisfying the spec before adding patterns. Include:
+The phase record contains architecture and review findings. Describe the simplest design satisfying the spec before adding patterns. Include:
 
 - Entities, state transitions/invariants, interfaces, storage and request/data flow as applicable.
 - Proposed file tree with create/modify/existing markers and one responsibility per touched file. Follow existing conventions; group cohesive features and avoid unrelated restructuring.

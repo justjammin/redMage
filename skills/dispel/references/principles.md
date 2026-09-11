@@ -71,7 +71,7 @@ DRY: `kiss: premature merge, cases diverge, revert to two functions.`
 
 ## Severity and stop conditions
 
-This review edits nothing. References to implementer fixes below describe subsequent controller-routed work. Correctness/security findings discovered incidentally are escalated to normal review with evidence, never ignored; they may set the P0 stop signal without expanding this into a correctness audit.
+This review leaves reviewed source unchanged and saves findings in `.mage/dispel/<slug>.md`. References to implementer fixes below describe subsequent controller-routed work. Correctness/security findings discovered incidentally are escalated to normal review with evidence, never ignored; they may set the P0 stop signal without expanding this into a correctness audit.
 
 
 1. **P0** — security hole, data loss, trust-boundary bypass, or a previously passing
@@ -82,8 +82,7 @@ This review edits nothing. References to implementer fixes below describe subseq
    Otherwise the implementer fixes it and the loop continues.
 3. **P2** — `yagni:`, `kiss:`, or `shrink:` fixable by a mechanical single-file
    rewrite. Implementer fixes inline. No halt.
-4. **P3** — debatable or borderline. No fix, no halt. File it as a follow-up beads
-   task under the epic.
+4. **P3** — debatable or borderline. No fix, no halt. Keep it in the phase report; add a follow-up in the configured tracker when available.
 
 ## Examples
 

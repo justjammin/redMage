@@ -1,5 +1,5 @@
 #!/usr/bin/env node
-import { cpSync, mkdirSync, lstatSync, readFileSync } from 'node:fs';
+import { cpSync, mkdirSync, lstatSync, readFileSync, writeFileSync } from 'node:fs';
 import { dirname, resolve, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { homedir } from 'node:os';
@@ -35,7 +35,9 @@ try {
     for (const entry of manifest.files.filter(name => name !== 'bin')) {
       cpSync(join(root, entry), join(dest, entry), { recursive: true, errorOnExist: true, force: false });
     }
-    console.log(`Installed redMage to ${dest}\nInvoke /rdm in your agent. Verify with: python3 "${join(dest, 'scripts/dependencies.py')}"`);
+    const router = readFileSync(join(root, 'skills/rdm/SKILL.md'), 'utf8');
+    writeFileSync(join(dest, 'SKILL.md'), router.replaceAll('](../', '](skills/'));
+    console.log(`Installed redMage to ${dest}\nInvoke /rdm in your agent.`);
   }
 } catch (error) {
   console.error(error.message);

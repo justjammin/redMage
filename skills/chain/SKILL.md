@@ -1,11 +1,13 @@
 ---
 name: chain
-description: "redMage:chain \u2014 turn the spec and architecture into concrete, independently testable vertical slices."
+description: Use when a settled specification and architecture need an actionable implementation plan.
 ---
 
 # 4. Chain
 
-Use the local planning contract below. Save to its normal dated plan path unless the repository specifies another. Carry the spec, architecture and global constraints into the plan header. Map every accepted FR/NFR to at least one slice and a verification step.
+Save this phase's record to `.mage/chain/<slug>.md` in the target project. Reuse the feature slug across phases, create directories as needed, and keep `/.mage/` ignored by Git.
+
+Use the local planning contract below. The phase record is the implementation plan. Carry the spec, architecture and global constraints into the plan header. Map every accepted FR/NFR to at least one slice and a verification step.
 
 A slice delivers independently testable behavior across the necessary layers. Fold scaffolding, migration and documentation into the behavior that needs them; do not split work into disconnected database/backend/UI chores. Each slice names:
 
@@ -20,11 +22,11 @@ Self-review coverage, signature consistency and missing details. Resolve shared-
 
 ## Planning contract
 
-Save `docs/superpowers/plans/YYYY-MM-DD-<feature>.md` unless project conventions differ. Header: Goal, Architecture, Tech Stack, Spec path/revision, Architecture path/revision and Global Constraints copied exactly. Direct workers to [Weave](../weave/SKILL.md). Number tasks and steps starting at 1.
+Header: Goal, Architecture, Tech Stack, Spec path/revision, Architecture path/revision and Global Constraints copied exactly. Direct workers to [Weave](../weave/SKILL.md). Number tasks and steps starting at 1.
 
 Before tasks, show the file map and responsibilities. Each task must be a behavior a reviewer can independently accept or reject; include its necessary scaffolding and docs. Give complete consumed/produced signatures, code for code steps, actual test cases, commands, expected outcomes and scoped commit instructions. Never write “TBD”, “add appropriate validation”, “similar to above”, or undefined interfaces. Do not require tests for trivial reversible prose edits.
 
 At agreed seams, order steps: one failing behavior test, run and confirm relevant failure, minimal implementation, run and confirm success, then scoped commit. Make expected values independent of implementation. Keep each action small and concrete.
 
-Self-review every requirement's task/test coverage, placeholder gaps and cross-task signatures. Track status in the repository tracker (beads when required); avoid competing checkbox ledgers. Link the completed plan and proceed to Weave when within confirmed scope. Execution mode is already selected.
+Self-review every requirement's task/test coverage, placeholder gaps and cross-task signatures. Track status in the configured repository tracker; without one, record slice status in the phase record. Link the completed plan and proceed to Weave when within confirmed scope. Execution mode is already selected.
 

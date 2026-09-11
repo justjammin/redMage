@@ -1,14 +1,11 @@
 ---
 name: dispel
-description: >
-  Use when reviewing a diff or directory for over-engineering and principle
-  violations across four lenses — YAGNI, KISS, DRY, SOLID — one line per finding
-  with severity and a stop verdict. Invoke as /redMage:dispel with a Git ref or directory paths.
-  Triggers: "review for over-engineering", "four-lens review", "is this SOLID",
-  "what can we delete".
+description: Use when reviewing a diff or directory for over-engineering, unnecessary abstractions, duplication or YAGNI, KISS, DRY and SOLID violations.
 ---
 
 # 6. Dispel
+
+Save this phase's record to `.mage/dispel/<slug>.md` in the target project. Reuse the feature slug across phases, create directories as needed, and keep `/.mage/` ignored by Git.
 
 Read [the principles reference](references/principles.md) once before starting if you
 haven't already this run. It is the canonical source for tags, lens precedence, the
@@ -37,7 +34,7 @@ never-flag list, severity levels, and stop conditions. Do not restate it — app
    principles.md. Unconfirmed → it is a `yagni:` finding instead.
 5. Drop anything on the never-flag list.
 6. Assign severity per principles.md.
-7. Emit.
+7. Save the report to the phase record and emit the same report.
 
 ## Output
 
@@ -75,16 +72,8 @@ Lean already. Ship.
 stop: no
 ```
 
-Audit mode (`--paths src/Inventory`), biggest cut first:
-
-```
-P2 src/Inventory/LegacyFeedBuilder.php:L1: delete: no callers since the feed moved to SearchService. Remove the file.
-net: -212 lines possible.
-stop: no
-```
-
 ## Boundaries
 
 - Correctness bugs, security holes, performance: out of scope — normal code review.
 - One smoke test on a new class is never bloat.
-- This lists findings. It applies nothing and edits no files.
+- This writes only the phase report and its Git ignore entry if missing. It never edits reviewed source files or applies findings.
