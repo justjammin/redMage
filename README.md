@@ -16,7 +16,11 @@ Add `--global` for installation across projects. Omit `--agent codex` to choose 
 
 Then invoke `/rdm` (or `$rdm` in the host's skill selector). The root skill installs the complete bundle, including the six phases, pattern references and preflight script. Do not install `skills/rdm` alone: it is the plugin's internal router and requires sibling files.
 
-No npm package, lifecycle hook or external skill download is required. The `skills` CLI is the npm-delivered installer; redMage is its GitHub skill source.
+### Where is package.json?
+
+This installation format does not need one. In `npx skills add justjammin/redMage`, npm supplies the **skills** CLI; that CLI downloads **redMage** from GitHub and reads its root `SKILL.md`. The `.codex-plugin/plugin.json` file is the separate Codex plugin manifest.
+
+redMage is not published on the npm registry. A standalone command such as `npx @justjammin/redmage` would require a separate executable npm package and publication; it is not the command provided here.
 
 ## The spellbook
 
@@ -43,4 +47,4 @@ python3 scripts/dependencies.py
 
 Expected: seven bundled skills and no missing references. Python 3 is needed for preflight; execution also needs Git and host subagent tools. Node/npm is needed to run the installer.
 
-The bundle was tested with an actual `npx skills add` copy installation in an isolated project, followed by the installed dependency check. Domain formats, pattern catalogs and examples travel with the bundle. See [provenance](PROVENANCE.md) for source adaptations.
+The bundle was tested with an actual `npx skills add` copy installation in an isolated project, followed by the installed dependency check. Domain formats, pattern catalogs and examples travel with the bundle.
