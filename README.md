@@ -1,6 +1,10 @@
 # redMage
 
-A bundled agent skill for requirements, architecture, implementation and review.
+![redMage tactical command menu: Scan, Analyze, Protect, Chain, Weave and Dispel](assets/command-menu.svg)
+
+**A little creation magic. A little protection magic. One complete spellbook.**
+
+redMage balances the craft of building with the discipline of guarding what matters. Reveal the requirements, shape the plan, summon a coordinated party of agents, and dispel complexity before the final cast. An FFVII-inspired command menu for a workflow that takes an idea through verified implementation.
 
 ## Install with npx skills
 
@@ -14,14 +18,18 @@ Then invoke `/rdm` (or `$rdm` in the host's skill selector). The root skill inst
 
 No npm package, lifecycle hook or external skill download is required. The `skills` CLI is the npm-delivered installer; redMage is its GitHub skill source.
 
-## Workflow
+## The spellbook
 
-1. **Scan** — functional/non-functional requirements, glossary and agreed testing seams.
-2. **Analyze** — synthesize the specification.
-3. **Protect** — architecture, file shapes and evidence-based pattern decisions.
-4. **Chain** — concrete vertical-slice implementation plan.
-5. **Weave** — scoped subagents, tests and independent correctness review.
-6. **Dispel** — main-session YAGNI, KISS, DRY and SOLID review.
+| Ability | The magic | The work |
+|---|---|---|
+| **1. Scan** | Reveal what hides in the mist. | Clarify users, functional and non-functional requirements, domain terms, and testing seams. |
+| **2. Analyze** | Give intent a true name. | Turn settled decisions into a specification with observable acceptance criteria. |
+| **3. Protect** | Raise a ward against fragile design. | Choose file shapes and patterns, then challenge them with evidence. |
+| **4. Chain** | Link each spell to the next. | Plan independently testable vertical slices and their dependencies. |
+| **5. Weave** | Cast through a coordinated party. | Dispatch scoped subagents, implement, test, and review the result. |
+| **6. Dispel** | Strip away needless enchantments. | Review through YAGNI, KISS, DRY, and SOLID; name what can be simplified. |
+
+You steer the important decisions. redMage keeps the spellbook, coordinates the party, and reports what passed verification.
 
 The plugin manifest exposes the phase skills when loaded as a plugin. The npx installer installs the single `rdm` bundle; the workflow loads its phases through relative paths rather than requiring separately registered commands.
 
