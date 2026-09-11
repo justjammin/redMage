@@ -1,0 +1,11 @@
+{
+  "name": "@justjammin/redmage",
+  "version": "0.3.0",
+  "private": true,
+  "description": "Install the bundled redMage agent workflow",
+  "type": "module",
+  "bin": { "redmage": "bin/redmage.mjs" },
+  "files": ["bin", "SKILL.md", "skills", "references", "scripts", "agents", "assets", ".codex-plugin"],
+  "engines": { "node": ">=18" },
+  "repository": { "type": "git", "url": "https://github.com/justjammin/redMage.git" }
+}

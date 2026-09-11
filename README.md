@@ -16,11 +16,25 @@ Add `--global` for installation across projects. Omit `--agent codex` to choose 
 
 Then invoke `/rdm` (or `$rdm` in the host's skill selector). The root skill installs the complete bundle, including the six phases, pattern references and preflight script. Do not install `skills/rdm` alone: it is the plugin's internal router and requires sibling files.
 
-### Where is package.json?
+### Direct local npm installation
 
-This installation format does not need one. In `npx skills add justjammin/redMage`, npm supplies the **skills** CLI; that CLI downloads **redMage** from GitHub and reads its root `SKILL.md`. The `.codex-plugin/plugin.json` file is the separate Codex plugin manifest.
+The package now includes `package.json` and a `redmage` executable. From this checkout:
 
-redMage is not published on the npm registry. A standalone command such as `npx @justjammin/redmage` would require a separate executable npm package and publication; it is not the command provided here.
+```sh
+npx . --help
+npx . install
+```
+
+Or from another directory:
+
+```sh
+npm install /absolute/path/to/redMage
+npx redmage install
+```
+
+The executable copies the complete bundle into the current project's `.agents/skills/rdm`. Use `--global` for your personal skills directory, or `--dest /exact/skill/folder` for a custom destination. Existing destinations are preserved; use a fresh destination for testing. No npm lifecycle scripts run, and the executable downloads no dependencies.
+
+This package is available from the checkout/GitHub, not published to the npm registry. The `npx skills add` installation above remains supported.
 
 ## The spellbook
 
