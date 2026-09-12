@@ -5,9 +5,9 @@ description: Use when agreed requirements need a specification with observable a
 
 # 2. Analyze
 
-Save this phase's record to `.mage/<slug>/2-analyze.Md` in the target project. Reuse the feature slug across phases, create directories as needed, and keep `/.mage/` ignored by Git.
+Save this phase's record to `.mage/<slug>/SPEC.md` in the target project. Reuse the feature slug across phases, create directories as needed, and keep `/.mage/` ignored by Git. To resume legacy numbered records, require manual renaming and internal-link updates first; do not fall back, migrate automatically, or create duplicates.
 
-Read `.mage/<slug>/1-scan.Md` and synthesize it with the conversation and codebase understanding. Use the glossary and respect ADRs. If a material decision is missing, return it to [Scan](../scan/SKILL.md); do not invent an answer. Use already agreed behavior seams; confirm genuinely new seams before planning tests.
+Read `.mage/<slug>/DISCOVERY.md` and synthesize it with the conversation and codebase understanding. If it is missing, report the prerequisite and stop; do not use legacy numbered records or invoke another skill. Use the glossary and respect ADRs. If a material decision is missing, ask the specific question and pause dependent work; do not invent an answer or restart [Scan](../scan/SKILL.md). Use already agreed behavior seams; confirm genuinely new seams before planning tests.
 
 The phase record is the specification. Include:
 
@@ -20,5 +20,4 @@ The phase record is the specification. Include:
 7. Out of Scope: explicit exclusions.
 8. Further Notes: constraints, dependencies, assumptions and unresolved gaps.
 
-Publish to the configured project tracker within existing authorization; use its actual labels, including ready-for-agent only if defined. Without a configured tracker, the local spec is the handoff. Never run unrelated setup or guess a project. Record the spec revision and hand off to [Protect](../protect/SKILL.md). Show the artifact and new gaps, not a second interview.
-
+Publish to the configured project tracker within existing authorization; use its actual labels, including ready-for-agent only if defined. Without a configured tracker, the local spec is the output. Never run unrelated setup or guess a project. Record the spec revision, show `SPEC.md` and readiness or blockers, then stop. [Protect](../protect/SKILL.md) requires a separate invocation; do not start a second interview or advance automatically.

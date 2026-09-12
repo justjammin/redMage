@@ -1,11 +1,11 @@
 ---
 name: rdm
-description: Use when a feature needs requirements, architecture, a plan, implementation and review, or an existing redMage workflow needs resuming.
+description: Use when choosing or resuming a redMage skill for discovery, specification, design, planning, implementation or review.
 ---
 
 # redMage
 
-Use `/rdm` for the whole workflow or `redMage:<phase>` for one phase. Resolve bundled skills through the relative links below.
+Use `/rdm` to select one skill or `redMage:<phase>` to invoke it directly. If the user has not selected a skill, present the menu below and ask which to run. Resolve bundled skills through the relative links below; invoke only the selected skill.
 
 ## Working context
 
@@ -13,29 +13,31 @@ Read the target project's instructions and existing knowledge. Assume Beads and 
 
 ## Artifact contract
 
-All generated workflow records live in the target project's `.mage/`, including when a phase runs alone. Keep the six numbered phase documents together in `.mage/<slug>/`, using one feature slug across phases. Within generated documents, link other phase records by their numbered filenames, such as `2-analyze.Md` and `3-protect.Md`. Create directories when first writing; keep `/.mage/` ignored by Git. Read existing project docs as inputs. Product source, tests and requested shipped documentation use normal project paths.
+All generated phase records live together in the target project's `.mage/<slug>/`, using one feature slug. Link other phase records by their artifact filenames, such as `SPEC.md` and `DESIGN.md`. Create directories when first writing; keep `/.mage/` ignored by Git. Read existing project docs as inputs. Product source, tests and requested shipped documentation use normal project paths. The selector has no separate output file.
+
+Use only the filenames below. Existing numbered records require manual renaming and internal-link updates before resuming; do not fall back to them, migrate them automatically, or create duplicate records. Report missing prerequisites and stop without invoking another skill.
 
 | Phase | Record |
 |---|---|
-| Scan | `.mage/<slug>/1-scan.Md`, `.mage/CONTEXT.md`, `.mage/adr/` |
-| Analyze | `.mage/<slug>/2-analyze.Md` |
-| Protect | `.mage/<slug>/3-protect.Md` |
-| Chain | `.mage/<slug>/4-chain.Md` |
-| Weave | `.mage/<slug>/5-weave.Md` |
-| Dispel | `.mage/<slug>/6-dispel.Md` |
+| Scan | `.mage/<slug>/DISCOVERY.md`, `.mage/CONTEXT.md`, `.mage/adr/` |
+| Analyze | `.mage/<slug>/SPEC.md` |
+| Protect | `.mage/<slug>/DESIGN.md` |
+| Chain | `.mage/<slug>/PLAN.md` |
+| Weave | `.mage/<slug>/RESULTS.md` |
+| Dispel | `.mage/<slug>/REVIEW.md` |
 
-## Workflow
+## Skill menu
 
 1. [Scan](../scan/SKILL.md): requirements interview, glossary, ADRs and agreed test seams.
 2. [Analyze](../analyze/SKILL.md): synthesize the settled spec.
 3. [Protect](../protect/SKILL.md): architecture/file shapes and solo evidence-based judging.
-4. [Chain](../chain/SKILL.md): concrete vertical-slice plan.
+4. [Chain](../chain/SKILL.md): concrete vertical-slice plan with an agent DAG and assignments.
 5. [Weave](../weave/SKILL.md): subagent implementation, independent reviews and integrated verification.
 6. [Dispel](../dispel/SKILL.md): main-session YAGNI → KISS → DRY → SOLID review of the complete task diff.
 
-Read each skill when its phase begins. Reuse settled decisions and existing authorization. Report transitions with artifact links, verification evidence, next work and any required decision. Keep the human informed during execution.
+Read the selected skill and its prerequisites. Reuse settled decisions and existing authorization; ask only for unresolved decisions needed by the current work. Report its artifact, verification evidence, readiness or blockers, and then stop. Starting another skill requires a separate user instruction; do not automatically advance or route blockers to another skill.
 
-Dispel reviews complexity; retain correctness and security checks. Finish with delivered requirements, verification, unresolved gaps and branch state.
+Dispel reviews complexity; retain correctness and security checks. Weave may report implementation complete while complexity review is pending. A separate Dispel invocation is required before calling the whole change fully reviewed; an unresolved required finding still blocks completion.
 
 ## Common mistakes
 

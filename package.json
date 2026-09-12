@@ -1,6 +1,6 @@
 {
   "name": "@justjammin/redmage",
-  "version": "0.5.2",
+  "version": "0.6.0",
   "private": true,
   "description": "Install the bundled redMage agent workflow",
   "type": "module",

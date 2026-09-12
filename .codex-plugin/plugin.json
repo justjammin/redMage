@@ -1,7 +1,7 @@
 {
   "name": "redMage",
-  "version": "0.5.2",
-  "description": "Local requirements-to-implementation workflow with six Final Fantasy-inspired skills.",
+  "version": "0.6.0",
+  "description": "Independent discovery, specification, design, planning, implementation and review skills.",
   "author": {
     "name": "justjammin"
   },
@@ -10,7 +10,7 @@
   "interface": {
     "displayName": "redMage",
     "shortDescription": "Scan, analyze, protect, chain, weave and dispel",
-    "longDescription": "A self-contained workflow for requirements, architecture, implementation and four-lens review.",
+    "longDescription": "Select one skill, produce its artifact, and stop before the next invocation.",
     "developerName": "justjammin",
     "category": "Productivity",
     "capabilities": [
@@ -18,7 +18,7 @@
       "Write"
     ],
     "defaultPrompt": [
-      "Use /rdm to plan and implement a feature."
+      "Use /rdm to select the redMage skill for this task."
     ]
   }
 }

@@ -10,7 +10,7 @@ One line per finding, nothing else:
 P<0-3> <file>:L<line>: <tag> <what>. <replacement>.
 ```
 
-Sort by severity descending, then by path. After the last finding, two lines:
+In diff mode, sort by severity (P0 first), then by path. In whole-file audit mode, sort by largest proposed line cut first, then severity and path. The output grammar is identical. After the last finding, two lines:
 
 ```
 net: -<N> lines possible.
@@ -19,6 +19,7 @@ stop: yes|no
 
 If there is nothing to cut, the entire output is `Lean already. Ship.` followed by `stop: no`.
 No prose between findings. No preamble, no summary paragraph.
+The report describes complexity only. Save it and stop; neither `stop: no` nor the clean-report wording authorizes fixes, another skill, or an overall completion claim.
 
 ## Tags
 
@@ -71,20 +72,24 @@ DRY: `kiss: premature merge, cases diverge, revert to two functions.`
 
 ## Severity and stop conditions
 
-This review leaves reviewed source unchanged and saves findings in `.mage/<slug>/6-dispel.Md`. References to implementer fixes below describe subsequent controller-routed work. Correctness/security findings discovered incidentally are escalated to normal review with evidence, never ignored; they may set the P0 stop signal without expanding this into a correctness audit.
+This review leaves reviewed source unchanged and saves findings in `.mage/<slug>/REVIEW.md`. Fixes described below belong to separately authorized work, not this invocation. Correctness/security findings discovered incidentally are reported with evidence for normal review, never ignored; they may set the P0 stop signal without expanding this into a correctness audit. Do not automatically invoke another reviewer or skill.
 
 
 1. **P0** — security hole, data loss, trust-boundary bypass, or a previously passing
-   test now failing. Emit `stop: yes` and halt the loop for a human.
+   test now failing. Emit `stop: yes`; human resolution is required.
 2. **P1** — a SOLID or DRY violation where the second implementation is already
-   present, or three or more duplications inside this change. Halt only if the fix
-   requires a public API or contract change touching files outside the diff.
-   Otherwise the implementer fixes it and the loop continues.
+   present, or three or more duplications inside this change. Emit `stop: yes` only
+   if the fix requires a public API or contract change touching files outside the
+   reviewed scope (the diff's files, or selected files in audit mode).
 3. **P2** — `yagni:`, `kiss:`, or `shrink:` fixable by a mechanical single-file
-   rewrite. Implementer fixes inline. No halt.
-4. **P3** — debatable or borderline. No fix, no halt. Keep it in the phase report; add a follow-up in the configured tracker when available.
+   rewrite. Report the smallest fix; no stop signal.
+4. **P3** — debatable or borderline. No fix, no stop signal. Keep it in the phase report; the controller may record a follow-up in a configured tracker during separately authorized work.
+
+Absent the P0/P1 conditions above, emit `stop: no`. Every invocation still ends after the report.
 
 ## Examples
+
+These excerpts illustrate tags and replacements, not complete report lines. Full reports include severity prefixes and the trailer specified above.
 
 `src/Payments/PaymentGatewayInterface.php:L1: yagni: interface with one implementation (StripeGateway). Inline into StripeGateway until a second gateway exists.`
 
