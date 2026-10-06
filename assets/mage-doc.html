@@ -1,0 +1,370 @@
+<!doctype html>
+<html lang="en">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>__MAGE_TITLE__</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700&family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;1,400&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: spec binder. Header with phase rail, sticky doc tabs, sticky section index left, reading column right. */
+:root {
+  --bg: #f6f7f9;
+  --surface: #ffffff;
+  --sunken: #eef0f4;
+  --fg: #1b1f27;
+  --muted: #5a6273;
+  --line: #d9dde5;
+  --accent: #b3263a;
+  --accent-soft: #f8e4e7;
+  --ok: #1f7a4d;
+  --ok-soft: #e1f2e9;
+  --warn: #9a5b00;
+  --warn-soft: #fbefd9;
+  --info: #2a5db0;
+  --info-soft: #e3ecfa;
+  --font-display: "Bricolage Grotesque", "Avenir Next", "Segoe UI", sans-serif;
+  --font-body: "IBM Plex Sans", "Helvetica Neue", Arial, sans-serif;
+  --font-mono: "IBM Plex Mono", ui-monospace, "SF Mono", Menlo, monospace;
+  --step--1: 0.8125rem;
+  --step-0: 0.9375rem;
+  --step-1: 1.125rem;
+  --step-2: 1.4rem;
+  --step-3: 2rem;
+  --radius: 6px;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #12151b; --surface: #1a1e26; --sunken: #222733; --fg: #e6e9ef; --muted: #9aa3b5; --line: #2f3542;
+    --accent: #f0707f; --accent-soft: #3a1f25; --ok: #5fcf95; --ok-soft: #173326; --warn: #f0b455; --warn-soft: #3a2c13;
+    --info: #7fa9ef; --info-soft: #1b2a45; color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #12151b; --surface: #1a1e26; --sunken: #222733; --fg: #e6e9ef; --muted: #9aa3b5; --line: #2f3542;
+  --accent: #f0707f; --accent-soft: #3a1f25; --ok: #5fcf95; --ok-soft: #173326; --warn: #f0b455; --warn-soft: #3a2c13;
+  --info: #7fa9ef; --info-soft: #1b2a45; color-scheme: dark;
+}
+* { box-sizing: border-box; }
+body { background: var(--bg); color: var(--fg); font-family: var(--font-body); font-size: var(--step-0); line-height: 1.6; overflow-wrap: break-word; }
+.wrap { max-width: 1180px; margin: 0 auto; padding-inline: 20px; }
+a { color: var(--accent); text-underline-offset: 2px; }
+a:focus-visible, button:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; border-radius: 3px; }
+code { font-family: var(--font-mono); font-size: 0.86em; background: var(--sunken); padding: 0.1em 0.35em; border-radius: 4px; overflow-wrap: anywhere; }
+h1, h2, h3 { font-family: var(--font-display); text-wrap: balance; line-height: 1.2; margin: 0; }
+
+/* Header */
+header.top { padding-block: 32px 20px; border-bottom: 1px solid var(--line); background: var(--surface); }
+.eyebrow { font-size: var(--step--1); text-transform: uppercase; letter-spacing: 0.08em; color: var(--muted); font-weight: 600; }
+.eyebrow a { color: inherit; }
+h1 { font-size: var(--step-3); font-weight: 700; margin-top: 6px; }
+.lede { color: var(--muted); max-width: 68ch; margin: 8px 0 0; }
+.meta { display: flex; flex-wrap: wrap; gap: 6px 20px; margin-top: 16px; font-size: var(--step--1); color: var(--muted); }
+.meta b { color: var(--fg); font-weight: 600; }
+
+.rail { display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 4px; margin-top: 22px; list-style: none; padding: 0; }
+.rail li { border-top: 3px solid var(--line); padding-top: 6px; font-size: var(--step--1); min-width: 0; overflow-wrap: anywhere; }
+.rail .n { font-family: var(--font-mono); color: var(--muted); margin-right: 4px; }
+.rail .name { font-weight: 600; }
+.rail .st { display: block; color: var(--muted); font-size: 0.75rem; }
+.rail li.done { border-color: var(--ok); }
+.rail li.draft { border-color: var(--warn); }
+.rail li.skipped { border-top: 3px dashed var(--line); color: var(--muted); }
+.rail li.next { border-color: var(--accent); }
+.rail li.next .st { color: var(--accent); font-weight: 600; }
+
+/* Tabs */
+nav.tabs { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 5; background: var(--bg); border-bottom: 1px solid var(--line); }
+nav.tabs .wrap { display: flex; gap: 4px; overflow-x: auto; }
+nav.tabs button { font: inherit; font-weight: 600; font-size: var(--step--1); color: var(--muted); background: none; border: 0; border-bottom: 2px solid transparent; padding: 12px 12px 10px; cursor: pointer; white-space: nowrap; }
+nav.tabs button[aria-selected="true"] { color: var(--fg); border-bottom-color: var(--accent); }
+nav.tabs button:hover { color: var(--fg); }
+nav.tabs .count { font-family: var(--font-mono); font-weight: 400; margin-left: 4px; color: var(--muted); }
+
+/* Body grid */
+main .wrap { display: grid; grid-template-columns: 200px minmax(0, 1fr); gap: 40px; padding-block: 28px 64px; }
+aside.toc { position: sticky; top: 64px; align-self: start; font-size: var(--step--1); }
+aside.toc ol { list-style: none; margin: 0; padding: 0; display: grid; gap: 2px; }
+aside.toc a { color: var(--muted); text-decoration: none; display: block; padding: 3px 8px; border-left: 2px solid var(--line); }
+aside.toc a:hover { color: var(--fg); border-left-color: var(--accent); }
+.doc-head { margin-bottom: 8px; }
+.doc-head h2 { font-size: var(--step-2); }
+.doc-head p { color: var(--muted); margin: 4px 0 0; max-width: 70ch; }
+section.sec { padding-top: 28px; scroll-margin-top: 64px; display: grid; gap: 14px; min-width: 0; }
+section.sec > h3 { font-size: var(--step-1); font-weight: 700; display: flex; gap: 10px; align-items: baseline; }
+section.sec > h3 .sn { font-family: var(--font-mono); font-size: var(--step--1); color: var(--muted); font-weight: 400; }
+.prose { max-width: 70ch; margin: 0; }
+.sub-h { font-family: var(--font-body); font-size: var(--step-0); font-weight: 700; margin: 6px 0 0; }
+.blk-title { font-weight: 600; font-size: var(--step--1); text-transform: uppercase; letter-spacing: 0.06em; color: var(--muted); margin: 0; }
+
+/* Tables */
+.tbl { overflow-x: auto; border: 1px solid var(--line); border-radius: var(--radius); background: var(--surface); }
+table { width: 100%; border-collapse: collapse; font-size: var(--step--1); }
+th, td { text-align: left; vertical-align: top; padding: 9px 12px; border-bottom: 1px solid var(--line); }
+tr:last-child td { border-bottom: 0; }
+th { font-weight: 600; color: var(--muted); background: var(--sunken); white-space: nowrap; }
+td.id { font-family: var(--font-mono); white-space: nowrap; font-weight: 500; font-variant-numeric: tabular-nums; }
+td .sub { display: block; color: var(--muted); margin-top: 3px; }
+
+/* Pills */
+.pill { display: inline-block; font-size: 0.72rem; font-weight: 600; letter-spacing: 0.03em; text-transform: uppercase; padding: 1px 8px; border-radius: 999px; white-space: nowrap; }
+.pill.must, .pill.open, .pill.high { background: var(--accent-soft); color: var(--accent); }
+.pill.should, .pill.default, .pill.inferred, .pill.medium { background: var(--warn-soft); color: var(--warn); }
+.pill.could, .pill.low { background: var(--info-soft); color: var(--info); }
+.pill.resolved, .pill.verified, .pill.done { background: var(--ok-soft); color: var(--ok); }
+.pill.blocked { background: var(--accent-soft); color: var(--accent); }
+
+/* Callout */
+.callout { border-left: 3px solid var(--info); background: var(--info-soft); padding: 12px 16px; border-radius: 0 var(--radius) var(--radius) 0; max-width: 78ch; }
+.callout.warn { border-left-color: var(--warn); background: var(--warn-soft); }
+.callout.ok { border-left-color: var(--ok); background: var(--ok-soft); }
+.callout.decision { border-left-color: var(--accent); background: var(--accent-soft); }
+.callout strong.t { display: block; margin-bottom: 2px; }
+.callout p { margin: 0; }
+
+/* Lists */
+ul.plain, ol.steps { margin: 0; padding-left: 1.2em; max-width: 72ch; display: grid; gap: 4px; }
+ol.steps { list-style: none; padding: 0; counter-reset: s; }
+ol.steps li { counter-increment: s; display: grid; grid-template-columns: 28px minmax(0, 1fr); }
+ol.steps li::before { content: counter(s); font-family: var(--font-mono); color: var(--accent); font-weight: 500; }
+
+.split { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; }
+.split > div { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: 12px 16px; min-width: 0; }
+.split .blk-title { margin-bottom: 6px; }
+.split .out .blk-title { color: var(--accent); }
+
+/* Code */
+.code { position: relative; background: var(--sunken); border: 1px solid var(--line); border-radius: var(--radius); min-width: 0; }
+.code pre { margin: 0; padding: 14px 16px; overflow-x: auto; font-family: var(--font-mono); font-size: var(--step--1); line-height: 1.55; }
+.code .lang { position: absolute; top: 6px; right: 66px; font-size: 0.7rem; color: var(--muted); font-family: var(--font-mono); }
+.code button { position: absolute; top: 4px; right: 6px; font: inherit; font-size: 0.72rem; font-weight: 600; background: var(--surface); color: var(--fg); border: 1px solid var(--line); border-radius: 4px; padding: 2px 8px; cursor: pointer; }
+
+.mermaid-blk { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: 14px 16px; overflow-x: auto; }
+.mermaid-blk pre.mermaid { margin: 0; font-family: var(--font-mono); font-size: var(--step--1); white-space: pre-wrap; }
+.mermaid-blk details { margin-top: 10px; }
+.mermaid-blk summary { cursor: pointer; font-size: var(--step--1); color: var(--muted); }
+
+/* Glossary */
+dl.gloss { margin: 0; display: grid; gap: 0; border: 1px solid var(--line); border-radius: var(--radius); background: var(--surface); }
+dl.gloss > div { display: grid; grid-template-columns: 200px minmax(0, 1fr); gap: 16px; padding: 12px 16px; border-bottom: 1px solid var(--line); }
+dl.gloss > div:last-child { border-bottom: 0; }
+dl.gloss dt { font-weight: 600; }
+dl.gloss dd { margin: 0; }
+
+/* Stat strip */
+.stats { display: flex; flex-wrap: wrap; gap: 8px 28px; font-size: var(--step--1); color: var(--muted); }
+.stats b { font-family: var(--font-mono); font-size: var(--step-1); color: var(--fg); margin-right: 6px; font-variant-numeric: tabular-nums; }
+
+@media (max-width: 760px) {
+  main .wrap { grid-template-columns: minmax(0, 1fr); gap: 8px; }
+  aside.toc { position: static; }
+  aside.toc ol { display: flex; flex-wrap: wrap; gap: 4px; }
+  aside.toc a { border-left: 0; border: 1px solid var(--line); border-radius: 999px; padding: 2px 10px; }
+  .rail { grid-template-columns: repeat(3, minmax(0, 1fr)); row-gap: 10px; }
+  .split, dl.gloss > div { grid-template-columns: minmax(0, 1fr); }
+  dl.gloss > div { gap: 2px; }
+}
+@media (prefers-reduced-motion: no-preference) { html { scroll-behavior: smooth; } }
+</style>
+
+<header class="top">
+  <div class="wrap" id="header"></div>
+</header>
+<nav class="tabs" aria-label="Documents"><div class="wrap" id="tabs" role="tablist"></div></nav>
+<main><div class="wrap"><aside class="toc" aria-label="Sections"><ol id="toc"></ol></aside><article id="doc"></article></div></main>
+
+<!--
+  Generated by scripts/mage-render.mjs from .mage/<slug>/*.md; rerun it instead of editing.
+  Page = { project, projectUrl?, title, lede?, meta?: [[label, value]], phases?: [{ name, state, note }], docs }.
+  Each doc = { id, label, title, intro?, sections: [{ title, blocks: [...] }] }.
+  Block primitives (see P in the renderer): p {text}, h {text}, list/steps {items}, callout {tone, title?, text},
+  table {columns, rows}, reqs, decisions, facts, questions, risks, split {left, right}, glossary {terms}, code {lang, text}, mermaid {text}, stats {items}.
+  Inline text supports `code`, **bold**, [label](https://url) and [label](#doc-or-section-id).
+-->
+<script type="application/json" id="data">
+__MAGE_DATA__
+</script>
+
+<script>
+(function () {
+  var DATA = JSON.parse(document.getElementById('data').textContent);
+
+  function esc(s) {
+    return String(s == null ? '' : s).replace(/[&<>"']/g, function (c) {
+      return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c];
+    });
+  }
+  function inline(s) {
+    return esc(s)
+      .replace(/`([^`]+)`/g, '<code>$1</code>')
+      .replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>')
+      .replace(/\[([^\]]+)\]\(((?:https:\/\/|#)[^)\s]+)\)/g, function (m, label, href) {
+        return '<a href="' + href + '"' + (href[0] === '#' ? '' : ' target="_blank" rel="noopener"') + '>' + label + '</a>';
+      })
+      .replace(/\b(VERIFIED|INFERRED)\b/g, function (m) { return pill(m.toLowerCase(), m); });
+  }
+  function pill(cls, label) { return '<span class="pill ' + esc(cls) + '">' + esc(label || cls) + '</span>'; }
+  function table(cols, rows) {
+    return '<div class="tbl"><table><thead><tr>' + cols.map(function (c) { return '<th scope="col">' + inline(c) + '</th>'; }).join('') +
+      '</tr></thead><tbody>' + rows.join('') + '</tbody></table></div>';
+  }
+  function tr(cells) { return '<tr>' + cells.join('') + '</tr>'; }
+  var PILLS = ['must', 'should', 'could', 'high', 'medium', 'low', 'open', 'resolved', 'default', 'verified', 'inferred', 'blocked', 'done'];
+  function cell(c, i) {
+    var t = String(c == null ? '' : c).trim();
+    if (PILLS.indexOf(t.toLowerCase()) >= 0) return td(pill(t.toLowerCase(), t));
+    return td(inline(c), i === 0 && /^[A-Z]{1,6}-\d+[a-z]?$/.test(t) ? 'id' : '');
+  }
+  function td(html, cls) { return '<td' + (cls ? ' class="' + cls + '"' : '') + '>' + html + '</td>'; }
+
+  var codeBlocks = [];
+  var P = {
+    h: function (b) { return '<h4 class="sub-h">' + inline(b.text) + '</h4>'; },
+    p: function (b) { return '<p class="prose">' + inline(b.text) + '</p>'; },
+    list: function (b) { return '<ul class="plain">' + b.items.map(function (i) { return '<li>' + inline(i) + '</li>'; }).join('') + '</ul>'; },
+    steps: function (b) { return '<ol class="steps">' + b.items.map(function (i) { return '<li><span>' + inline(i) + '</span></li>'; }).join('') + '</ol>'; },
+    callout: function (b) {
+      return '<div class="callout ' + esc(b.tone || 'info') + '">' + (b.title ? '<strong class="t">' + inline(b.title) + '</strong>' : '') + '<p>' + inline(b.text) + '</p></div>';
+    },
+    table: function (b) {
+      return table(b.columns, b.rows.map(function (r) { return tr(r.map(cell)); }));
+    },
+    reqs: function (b) {
+      var hasAccept = b.rows.some(function (r) { return r.accept; });
+      return table(['ID', 'Priority', 'Requirement'].concat(hasAccept ? ['Acceptance'] : []), b.rows.map(function (r) {
+        return tr([td(esc(r.id), 'id'), td(pill(r.pri)), td(inline(r.text))].concat(hasAccept ? [td(inline(r.accept || ''))] : []));
+      }));
+    },
+    decisions: function (b) {
+      return table(['ID', 'Question', 'Decision', 'By'], b.rows.map(function (r) {
+        return tr([td(esc(r.id), 'id'), td(inline(r.q)), td(inline(r.choice)), td(inline(r.by))]);
+      }));
+    },
+    facts: function (b) {
+      return table(['Claim', 'Evidence', 'Grade'], b.rows.map(function (r) {
+        return tr([td(inline(r.claim)), td('<code>' + esc(r.evidence) + '</code>'), td(pill(r.grade))]);
+      }));
+    },
+    questions: function (b) {
+      return table(['ID', 'Status', 'Question'], b.rows.map(function (r) {
+        return tr([td(esc(r.id), 'id'), td(pill(r.status)), td(inline(r.text) + (r.answer ? '<span class="sub">' + inline(r.answer) + '</span>' : ''))]);
+      }));
+    },
+    risks: function (b) {
+      return table(['Level', 'Risk', 'Mitigation'], b.rows.map(function (r) {
+        return tr([td(pill(r.level)), td(inline(r.risk)), td(inline(r.mitigation))]);
+      }));
+    },
+    split: function (b) {
+      function side(s, cls) { return '<div class="' + cls + '"><p class="blk-title">' + inline(s.title) + '</p>' + P.list(s) + '</div>'; }
+      return '<div class="split">' + side(b.left, 'in') + side(b.right, 'out') + '</div>';
+    },
+    glossary: function (b) {
+      return '<dl class="gloss">' + b.terms.map(function (t) { return '<div><dt>' + inline(t.term) + '</dt><dd>' + inline(t.def) + '</dd></div>'; }).join('') + '</dl>';
+    },
+    code: function (b) {
+      var i = codeBlocks.push(b.text) - 1;
+      return '<div class="code"><span class="lang">' + esc(b.lang || '') + '</span><button type="button" data-copy="' + i + '">Copy</button><pre><code>' + esc(b.text) + '</code></pre></div>';
+    },
+    mermaid: function (b) {
+      return '<div class="mermaid-blk"><pre class="mermaid">' + esc(b.text) + '</pre><details><summary>Source</summary>' + P.code({ lang: 'mermaid', text: b.text }) + '</details></div>';
+    },
+    stats: function (b) {
+      return '<div class="stats">' + b.items.map(function (s) { return '<span><b>' + esc(s[0]) + '</b>' + esc(s[1]) + '</span>'; }).join('') + '</div>';
+    }
+  };
+
+  function renderBlock(b) {
+    var fn = P[b.type];
+    return fn ? fn(b) : '<div class="callout warn"><p>Unknown block type <code>' + esc(b.type) + '</code></p></div>';
+  }
+
+  // Header
+  document.getElementById('header').innerHTML =
+    '<div class="eyebrow">' + (DATA.projectUrl ? '<a href="' + esc(DATA.projectUrl) + '" target="_blank" rel="noopener">' + esc(DATA.project) + '</a>' : esc(DATA.project)) + ' · redMage record</div>' +
+    '<h1>' + inline(DATA.title) + '</h1>' +
+    (DATA.lede ? '<p class="lede">' + inline(DATA.lede) + '</p>' : '') +
+    (DATA.meta && DATA.meta.length ? '<div class="meta">' + DATA.meta.map(function (m) { return '<span>' + esc(m[0]) + ' <b>' + inline(m[1]) + '</b></span>'; }).join('') + '</div>' : '') +
+    (DATA.phases && DATA.phases.length ? '<ol class="rail" aria-label="Phases">' + DATA.phases.map(function (p, i) {
+      return '<li class="' + esc(p.state) + '"><span class="n">' + (i + 1) + '</span><span class="name">' + esc(p.name) + '</span><span class="st">' + esc(p.note || p.state) + '</span></li>';
+    }).join('') + '</ol>' : '');
+
+  // Tabs
+  var tabs = document.getElementById('tabs');
+  tabs.innerHTML = DATA.docs.map(function (d) {
+    return '<button type="button" role="tab" id="tab-' + esc(d.id) + '" data-doc="' + esc(d.id) + '">' + esc(d.label) + '<span class="count">' + d.sections.length + '</span></button>';
+  }).join('');
+
+  // Hash "#spec" or "#spec-3" -> doc "spec"; longest id wins so ids containing "-" still resolve.
+  function docFor(hash) {
+    return DATA.docs.filter(function (d) { return hash === d.id || hash.indexOf(d.id + '-') === 0; })
+      .sort(function (a, b) { return b.id.length - a.id.length; })[0] || DATA.docs[0];
+  }
+  var current;
+  function show(id) {
+    var doc = docFor(id);
+    current = doc.id;
+    codeBlocks = [];
+    Array.prototype.forEach.call(tabs.children, function (b) { b.setAttribute('aria-selected', String(b.dataset.doc === doc.id)); });
+    document.getElementById('toc').innerHTML = doc.sections.map(function (s, i) {
+      return '<li><a href="#' + esc(doc.id) + '-' + (i + 1) + '">' + esc(s.title) + '</a></li>';
+    }).join('');
+    document.getElementById('doc').innerHTML =
+      '<div class="doc-head"><h2>' + inline(doc.title) + '</h2>' + (doc.intro ? '<p>' + inline(doc.intro) + '</p>' : '') + '</div>' +
+      doc.sections.map(function (s, i) {
+        return '<section class="sec" id="' + esc(doc.id) + '-' + (i + 1) + '"><h3><span class="sn">' + (i + 1) + '</span>' + inline(s.title) + '</h3>' + s.blocks.map(renderBlock).join('') + '</section>';
+      }).join('');
+    renderMermaid();
+  }
+
+  // Lazy-load mermaid once; if it fails the escaped source stays visible as text.
+  var mermaidLib;
+  function renderMermaid() {
+    var nodes = document.querySelectorAll('#doc pre.mermaid');
+    if (!nodes.length) return;
+    var dark = document.documentElement.dataset.theme === 'dark' ||
+      (document.documentElement.dataset.theme !== 'light' && window.matchMedia && matchMedia('(prefers-color-scheme: dark)').matches);
+    mermaidLib = mermaidLib || new Promise(function (ok, fail) {
+      var s = document.createElement('script');
+      s.src = 'https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.min.js';
+      s.onload = function () { window.mermaid ? ok(window.mermaid) : fail(); };
+      s.onerror = fail;
+      document.head.appendChild(s);
+    });
+    mermaidLib.then(function (m) {
+      m.initialize({ startOnLoad: false, securityLevel: 'strict', theme: dark ? 'dark' : 'default' });
+      return m.run({ nodes: nodes });
+    }).catch(function () {});
+  }
+
+  tabs.addEventListener('click', function (e) {
+    var b = e.target.closest('button[data-doc]');
+    if (!b) return;
+    show(b.dataset.doc);
+    if (history.replaceState) history.replaceState(null, '', '#' + b.dataset.doc);
+    window.scrollTo(0, 0);
+  });
+
+  document.getElementById('doc').addEventListener('click', function (e) {
+    var b = e.target.closest('button[data-copy]');
+    if (!b) return;
+    var text = codeBlocks[+b.dataset.copy];
+    function done(label) { b.textContent = label; setTimeout(function () { b.textContent = 'Copy'; }, 1400); }
+    function fallback() {
+      var r = document.createRange(); r.selectNodeContents(b.parentNode.querySelector('pre'));
+      var sel = window.getSelection(); sel.removeAllRanges(); sel.addRange(r); done('Selected');
+    }
+    try { navigator.clipboard.writeText(text).then(function () { done('Copied'); }, fallback); } catch (err) { fallback(); }
+  });
+
+  function go() {
+    var hash = decodeURIComponent((location.hash || '').slice(1));
+    if (docFor(hash).id !== current) show(hash);
+    var target = hash && document.getElementById(hash);
+    if (target && target.tagName === 'SECTION') target.scrollIntoView();
+    else if (hash === current) window.scrollTo(0, 0);
+  }
+  window.addEventListener('hashchange', go);
+  go();
+})();
+</script>

@@ -47,7 +47,7 @@ net: -<N> lines possible.
 stop: yes|no
 ```
 
-Use the canonical ordering and stop rules for the selected mode. Save `REVIEW.md`, emit the report and stop; `stop: no` is not authorization to apply fixes or invoke another skill.
+Use the canonical ordering and stop rules for the selected mode. Save `REVIEW.md`, then refresh the local HTML view of all records with the [record renderer](../../scripts/mage-render.mjs): `node <path-to-that-script> .mage/<slug>`. If Node is unavailable, say so and continue. Publish the rendered `index.html` with the host's own page-publishing tool when one exists (for example a Claude Artifact or a Cursor canvas); on first publish save the returned https URL to `artifact.url` in the same folder; later phases pass that URL back to the same tool to update it in place instead of creating a new page; when the host has no such tool, keep the local file and skip silently. Emit the report and stop; `stop: no` is not authorization to apply fixes or invoke another skill.
 
 ### Examples
 
@@ -68,5 +68,5 @@ stop: no
 
 - Correctness bugs, security holes, performance: out of scope — normal code review.
 - One smoke test on a new class is never bloat.
-- This writes only the phase report and its Git ignore entry if missing. It never edits reviewed source files or applies findings.
+- This writes only the phase report, its generated HTML view and its Git ignore entry if missing. It never edits reviewed source files or applies findings.
 - This is the required complexity checkpoint for a fully reviewed change, not proof of correctness, security or implementation completion. Unresolved required findings still block completion.

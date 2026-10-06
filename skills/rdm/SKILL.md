@@ -9,11 +9,11 @@ Use `/rdm` to select one skill or `redMage:<phase>` to invoke it directly. If th
 
 ## Working context
 
-Read the target project's instructions and existing knowledge. Assume Beads and lean-ctx are absent. Use ordinary host file, search and shell tools; resume decisions and status from `.mage/` phase records. Integrate a tracker or indexed code tools only when the target project explicitly configures them. Do not install or initialize either for this workflow. Start directly with the needed phase.
+Read the target project's instructions and existing knowledge. Never install Beads or lean-ctx. Use ordinary host file, search and shell tools; resume decisions and status from `.mage/` phase records. If the `bd` command exists but the target project has no `.beads/` directory, ask the human once whether to initialize Beads in that project (`bd init`); proceed with ordinary `.mage/` records if they decline or `bd` is absent. If the project has `.beads/`, use it as the tracker. Use lean-ctx or other indexed code tools only when the project configures them. Start directly with the needed phase.
 
 ## Artifact contract
 
-All generated phase records live together in the target project's `.mage/<slug>/`, using one feature slug. Link other phase records by their artifact filenames, such as `SPEC.md` and `DESIGN.md`. Create directories when first writing; keep `/.mage/` ignored by Git. Read existing project docs as inputs. Product source, tests and requested shipped documentation use normal project paths. The selector has no separate output file.
+All generated phase records live together in the target project's `.mage/<slug>/`, using one feature slug. Link other phase records by their artifact filenames, such as `SPEC.md` and `DESIGN.md`. Create directories when first writing; keep `/.mage/` ignored by Git. Read existing project docs as inputs. Product source, tests and requested shipped documentation use normal project paths. The selector has no separate output file. `scripts/mage-render.mjs` writes `.mage/<slug>/index.html`, a generated view of all records, published with the host's page-publishing tool when it has one (URL in `artifact.url` beside it); never edit it by hand.
 
 Use only the filenames below. Existing numbered records require manual renaming and internal-link updates before resuming; do not fall back to them, migrate them automatically, or create duplicate records. Report missing prerequisites and stop without invoking another skill.
 
