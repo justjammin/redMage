@@ -15,7 +15,7 @@ Record base commit, worktree, slice status, completed commits, review attempts, 
 
 ## Worker contract
 
-Pass absolute paths to the originating project's `.mage/` records; ignored files are not copied into new worktrees. Keep the controller's phase record there throughout execution.
+Pass absolute paths to the originating project's `.mage/` records; untracked and ignored files are not copied into new worktrees. Keep the controller's phase record there throughout execution.
 
 Dispatch a fresh worker with this file and [implementation guidance](references/implementation.md), exact slice/plan/spec sections, acceptance criteria and NFRs, owned paths, consumed/produced signatures, dependency commits, test commands and agreed seams. Include: “You are not alone in this codebase. Preserve others' edits and accommodate their changes. Report necessary out-of-scope changes to the controller.”
 
