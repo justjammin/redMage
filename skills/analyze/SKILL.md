@@ -5,7 +5,7 @@ description: Use when agreed requirements need a specification with observable a
 
 # 2. Analyze
 
-Save this phase's record to `.mage/<slug>/SPEC.md` in the target project. Reuse the feature slug across phases, create directories as needed, and keep `/.mage/` ignored by Git. To resume legacy numbered records, require manual renaming and internal-link updates first; do not fall back, migrate automatically, or create duplicates.
+Save this phase's record to `.mage/<slug>/SPEC.md` in the target project. Reuse the feature slug across phases, create directories as needed. Do not edit `.gitignore` for `.mage/`, and do not stage or commit `.mage/` records. To resume legacy numbered records, require manual renaming and internal-link updates first; do not fall back, migrate automatically, or create duplicates.
 
 Read `.mage/<slug>/DISCOVERY.md` and synthesize it with the conversation and codebase understanding. If it is missing, report the prerequisite and stop; do not use legacy numbered records or invoke another skill. Use the glossary and respect ADRs. If a material decision is missing, ask the specific question and pause dependent work; do not invent an answer or restart [Scan](../scan/SKILL.md). Use already agreed behavior seams; confirm genuinely new seams before planning tests.
 

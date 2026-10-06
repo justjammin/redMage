@@ -5,7 +5,7 @@ description: Use when an approved implementation plan is ready for execution wit
 
 # 5. Weave
 
-Save this phase's record to `.mage/<slug>/RESULTS.md` in the target project. Reuse the feature slug across phases, create directories as needed, and keep `/.mage/` ignored by Git. To resume legacy numbered records, require manual renaming and internal-link updates first; do not fall back, migrate automatically, or create duplicates.
+Save this phase's record to `.mage/<slug>/RESULTS.md` in the target project. Reuse the feature slug across phases, create directories as needed. Do not edit `.gitignore` for `.mage/`, and do not stage or commit `.mage/` records. To resume legacy numbered records, require manual renaming and internal-link updates first; do not fall back, migrate automatically, or create duplicates.
 
 ## Execution context
 

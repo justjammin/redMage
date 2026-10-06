@@ -5,7 +5,7 @@ description: Use when a settled specification and architecture need an actionabl
 
 # 4. Chain
 
-Save this phase's record to `.mage/<slug>/PLAN.md` in the target project. Reuse the feature slug across phases, create directories as needed, and keep `/.mage/` ignored by Git. To resume legacy numbered records, require manual renaming and internal-link updates first; do not fall back, migrate automatically, or create duplicates.
+Save this phase's record to `.mage/<slug>/PLAN.md` in the target project. Reuse the feature slug across phases, create directories as needed. Do not edit `.gitignore` for `.mage/`, and do not stage or commit `.mage/` records. To resume legacy numbered records, require manual renaming and internal-link updates first; do not fall back, migrate automatically, or create duplicates.
 
 Read `.mage/<slug>/SPEC.md` and `.mage/<slug>/DESIGN.md`. If either is missing or has unresolved blocking decisions, report the prerequisite and stop; do not use legacy numbered records or invoke another skill. Use the local planning contract below. The phase record is the implementation plan. Carry the spec, architecture and global constraints into the plan header. Map every accepted FR/NFR to at least one slice and a verification step.
 

@@ -13,7 +13,7 @@ Read the target project's instructions and existing knowledge. Never install Bea
 
 ## Artifact contract
 
-All generated phase records live together in the target project's `.mage/<slug>/`, using one feature slug. Link other phase records by their artifact filenames, such as `SPEC.md` and `DESIGN.md`. Create directories when first writing; keep `/.mage/` ignored by Git. Read existing project docs as inputs. Product source, tests and requested shipped documentation use normal project paths. The selector has no separate output file. `scripts/mage-render.mjs` writes `.mage/<slug>/index.html`, a generated view of all records, published with the host's page-publishing tool when it has one (URL in `artifact.url` beside it); never edit it by hand.
+All generated phase records live together in the target project's `.mage/<slug>/`, using one feature slug. Link other phase records by their artifact filenames, such as `SPEC.md` and `DESIGN.md`. Create directories when first writing. Do not edit `.gitignore` for `.mage/`, and do not stage or commit `.mage/` records. Read existing project docs as inputs. Product source, tests and requested shipped documentation use normal project paths. The selector has no separate output file. `scripts/mage-render.mjs` writes `.mage/<slug>/index.html`, a generated view of all records, published with the host's page-publishing tool when it has one (URL in `artifact.url` beside it); never edit it by hand.
 
 Use only the filenames below. Existing numbered records require manual renaming and internal-link updates before resuming; do not fall back to them, migrate them automatically, or create duplicate records. Report missing prerequisites and stop without invoking another skill.
 
@@ -43,4 +43,4 @@ Dispel reviews complexity; retain correctness and security checks. Weave may rep
 
 - Installing only the router loses sibling references; install the plugin or complete bundle.
 - Restarting interviews loses settled decisions; resume from existing phase records.
-- Treating local records as deliverables adds repository noise; keep `.mage/` ignored.
+- Treating local records as deliverables adds repository noise; leave `.mage/` unstaged and out of `.gitignore`.

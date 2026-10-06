@@ -5,7 +5,7 @@ description: Use when a specification needs architecture decisions or a proposed
 
 # 3. Protect
 
-Save this phase's record to `.mage/<slug>/DESIGN.md` in the target project. Reuse the feature slug across phases, create directories as needed, and keep `/.mage/` ignored by Git. To resume legacy numbered records, require manual renaming and internal-link updates first; do not fall back, migrate automatically, or create duplicates.
+Save this phase's record to `.mage/<slug>/DESIGN.md` in the target project. Reuse the feature slug across phases, create directories as needed. Do not edit `.gitignore` for `.mage/`, and do not stage or commit `.mage/` records. To resume legacy numbered records, require manual renaming and internal-link updates first; do not fall back, migrate automatically, or create duplicates.
 
 Read the specification at `.mage/<slug>/SPEC.md`. If it is missing, report the prerequisite and stop; do not use legacy numbered records or invoke another skill. The phase record contains architecture and review findings. Describe the simplest design satisfying the spec before adding patterns. Include:
 

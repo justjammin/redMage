@@ -82,7 +82,7 @@ Each phase saves its working documents under `.mage/` in the target project:
 | Weave | `.mage/<slug>/RESULTS.md` |
 | Dispel | `.mage/<slug>/REVIEW.md` |
 
-Keep all feature documents in the same folder and use the exact filenames above in references. Scan records discovery and decisions; Analyze turns those into the formal specification. The selector writes no separate document. Keep `/.mage/` ignored by Git so decisions, plans and review evidence remain local. Product source, tests and explicitly requested shipped documentation stay in their normal project locations. Existing project knowledge remains readable without being moved or rewritten.
+Keep all feature documents in the same folder and use the exact filenames above in references. Scan records discovery and decisions; Analyze turns those into the formal specification. The selector writes no separate document. redMage never edits `.gitignore` and never commits `.mage/`, so decisions, plans and review evidence remain local. Product source, tests and explicitly requested shipped documentation stay in their normal project locations. Existing project knowledge remains readable without being moved or rewritten.
 
 Only the new artifact names are supported. Before resuming an existing feature, manually rename its numbered phase records and update their internal links. Skills do not fall back to legacy names, automatically migrate records, or create duplicate outputs.
 
