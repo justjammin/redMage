@@ -17,6 +17,17 @@ Read the specification at `.mage/<slug>/SPEC.md`. If it is missing, report the p
 
 When observed pressures raise an object-design question, read the local [OOP design guide](../../references/oop-design.md) to shortlist candidates, then the relevant [pattern deep dives](../../references/pattern-deep-dives.md). Map selected participants to actual files, contracts, acceptance tests and failure behavior using its hydration checklist. Consult [Refactoring.Guru's catalog](https://refactoring.guru/design-patterns/catalog), open the relevant pattern pages and cite them beside decisions. Skip this object-pattern research when no such question exists. The general judge protocol and relevant architecture sources remain required: queues, replication and deployment topology need appropriate primary sources and Protect catalogs. Never force one pattern per requirement or treat a catalog as evidence that a pattern is necessary.
 
+## Principle passes
+
+Run the passes on the drafted design, in this order: YAGNI, DRY, KISS, SOLID. Each pass is a checkpoint. Finish one pass, record its findings and revisions in `DESIGN.md` under a heading for that pass, then start the next. A later pass never re-adds what an earlier pass removed. Definitions and tags: [principles](../dispel/references/principles.md).
+
+1. YAGNI: drop components, options, layers and abstractions with no requirement ID behind them. An abstraction stays only if it meets the "earns its place" criteria in principles.md.
+2. DRY: find the same rule or knowledge repeated across the proposed files and the existing code. Grep the existing code. Apply principles.md's rule of three. Prefer reusing an existing helper over a new one.
+3. KISS: choose the most direct flow and the fewest files that still meet the requirements. Undo any DRY merge that needs mode flags (fake DRY).
+4. SOLID: check responsibilities, dependency direction and test seams on what survived. Never add an abstraction YAGNI would reject.
+
+Record each checkpoint's findings in the finding format below (severity, failure, target, proof, smallest fix), or "none". P0/P1 findings block the next checkpoint until the controller revises the design.
+
 Run Protect in REVIEW mode with solo judging against the saved spec and architecture fixed point. Use SELECT when comparing undecided candidates, then REVIEW the authored choice. Read the relevant Protect catalogs and judge protocol. Protect reports findings without editing its review target; the controller applies justified revisions. Unresolved blockers prevent dependent planning. Keep unsupported choices as Investigate with an evidence-gathering action, not as approved architecture. Reconcile requirement changes with the spec and user decisions before continuing.
 
 ## Local judging contract
