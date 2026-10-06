@@ -33,7 +33,7 @@ Use only the filenames below. Existing numbered records require manual renaming 
 3. [Protect](../protect/SKILL.md): architecture/file shapes and solo evidence-based judging.
 4. [Chain](../chain/SKILL.md): concrete vertical-slice plan with an agent DAG and assignments.
 5. [Weave](../weave/SKILL.md): subagent implementation, independent reviews and integrated verification.
-6. [Dispel](../dispel/SKILL.md): main-session YAGNI → KISS → DRY → SOLID review of the complete task diff.
+6. [Dispel](../dispel/SKILL.md): main-session YAGNI → DRY → KISS → SOLID review of the complete task diff.
 
 Read the selected skill and its prerequisites. Reuse settled decisions and existing authorization; ask only for unresolved decisions needed by the current work. Report its artifact, verification evidence, readiness or blockers, and then stop. Starting another skill requires a separate user instruction; do not automatically advance or route blockers to another skill.
 

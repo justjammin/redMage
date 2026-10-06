@@ -63,7 +63,7 @@ This package is available from the checkout/GitHub, not published to the npm reg
 | **3. Protect** | Raise a ward against fragile design. | Choose file shapes and patterns, then challenge them with evidence. |
 | **4. Chain** | Link each spell to the next. | Plan independently testable vertical slices, an agent DAG, assignments and verification. |
 | **5. Weave** | Cast through a coordinated party. | Dispatch scoped subagents, implement, test, and review the result. |
-| **6. Dispel** | Strip away needless enchantments. | Review through YAGNI, KISS, DRY, and SOLID; name what can be simplified. |
+| **6. Dispel** | Strip away needless enchantments. | Review through YAGNI, DRY, KISS, and SOLID; name what can be simplified. |
 
 You steer the important decisions. Invoke one skill, review its output, then choose when to continue. `/rdm` selects one skill; when none is specified, it asks which to run. Missing prerequisites or unresolved decisions pause dependent work instead of automatically starting another skill.
 

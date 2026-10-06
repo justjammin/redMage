@@ -1,4 +1,4 @@
-# Review principles — YAGNI, KISS, DRY, SOLID
+# Review principles — YAGNI, DRY, KISS, SOLID
 
 Four-lens review of a change. Apply to the target repository's actual language, platform and documented standards. Examples illustrate the original PHP context; never assume that stack.
 
@@ -29,9 +29,9 @@ The report describes complexity only. Save it and stop; neither `stop: no` nor t
 | `stdlib:` | YAGNI | Hand-rolled thing the language's standard library already ships. Name the function. |
 | `native:` | YAGNI | The installed framework or platform already does this. Name the feature. |
 | `yagni:` | YAGNI | Abstraction with one implementation, config nobody sets, layer with one caller. |
+| `dry:` | DRY | Three or more near-identical blocks. Name the shared form. |
 | `shrink:` | KISS | Same logic, fewer lines. Show the shorter form. |
 | `kiss:` | KISS | Needlessly clever or indirect flow. Show the direct one. |
-| `dry:` | DRY | Three or more near-identical blocks. Name the shared form. |
 | `srp:` | SOLID | One class doing several unrelated jobs; it changes for several reasons. |
 | `ocp:` | SOLID | Adding a case requires editing existing code that keeps growing. |
 | `lsp:` | SOLID | A subtype cannot stand in for its parent without breaking callers. |
@@ -40,7 +40,7 @@ The report describes complexity only. Save it and stop; neither `stop: no` nor t
 
 ## Precedence
 
-Apply the lenses to each candidate finding in order: YAGNI → KISS → DRY → SOLID.
+Apply the lenses to each candidate finding in order: YAGNI → DRY → KISS → SOLID.
 If YAGNI says delete or inline, stop there. Do not also flag a SOLID violation on
 code you are recommending be removed.
 

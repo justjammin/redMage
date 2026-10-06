@@ -1,6 +1,6 @@
 ---
 name: dispel
-description: Use when reviewing a diff or directory for over-engineering, unnecessary abstractions, duplication or YAGNI, KISS, DRY and SOLID violations.
+description: Use when reviewing a diff or directory for over-engineering, unnecessary abstractions, duplication or YAGNI, DRY, KISS and SOLID violations.
 ---
 
 # 6. Dispel
@@ -28,7 +28,7 @@ and examples below illustrate that contract.
 2. Collect the diff or file set for the mode above. Nothing resolves → say so and
    stop; never guess a ref.
 3. For each hunk (audit mode: each file) walk the lenses in precedence order
-   YAGNI → KISS → DRY → SOLID. Stop at the first lens that says delete or inline —
+   YAGNI → DRY → KISS → SOLID. Stop at the first lens that says delete or inline —
    do not stack a SOLID finding on code you want removed.
 4. Before flagging any SOLID finding that would ADD an abstraction, grep the repo
    and container config to confirm the abstraction-earns-its-place criteria in
