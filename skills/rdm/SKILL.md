@@ -9,7 +9,7 @@ Use `/rdm` to select one skill or `redMage:<phase>` to invoke it directly. If th
 
 ## Working context
 
-Read the target project's instructions and existing knowledge. Never install Beads or lean-ctx. Use ordinary host file, search and shell tools; resume decisions and status from `.mage/` phase records. If the `bd` command exists but the target project has no `.beads/` directory, ask the human once whether to initialize Beads in that project (`bd init`); proceed with ordinary `.mage/` records if they decline or `bd` is absent. If the project has `.beads/`, use it as the tracker. Use lean-ctx or other indexed code tools only when the project configures them. Start directly with the needed phase.
+Read the target project's instructions and existing knowledge. Never install Beads or lean-ctx. Use ordinary host file, search and shell tools; resume decisions and status from `.mage/` phase records. If the `bd` command exists but the target project has no `.beads/` directory, ask the human once whether to initialize Beads in that project (`bd init --quiet --stealth`, which keeps Beads files out of the project's Git history); proceed with ordinary `.mage/` records if they decline or `bd` is absent. If the project has `.beads/`, use it as the tracker. Use lean-ctx or other indexed code tools only when the project configures them. Start directly with the needed phase.
 
 ## Artifact contract
 
