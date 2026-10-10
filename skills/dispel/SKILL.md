@@ -1,11 +1,11 @@
 ---
 name: dispel
-description: Use when reviewing a diff or directory for over-engineering, unnecessary abstractions, duplication or YAGNI, KISS, DRY and SOLID violations.
+description: Use when reviewing a diff or directory for over-engineering, unnecessary abstractions, duplication or YAGNI, DRY, KISS and SOLID violations.
 ---
 
 # 6. Dispel
 
-Save this phase's record to `.mage/<slug>/REVIEW.md` in the target project. Reuse the feature slug across phases, create directories as needed, and keep `/.mage/` ignored by Git. To resume legacy numbered records, require manual renaming and internal-link updates first; do not fall back, migrate automatically, or create duplicates.
+Save this phase's record to `.mage/<slug>/REVIEW.md` in the target project. Reuse the feature slug across phases, create directories as needed. Do not edit `.gitignore` for `.mage/`, and do not stage or commit `.mage/` records. To resume legacy numbered records, require manual renaming and internal-link updates first; do not fall back, migrate automatically, or create duplicates.
 
 Read [the principles reference](references/principles.md) once before starting if you
 haven't already this run. It is the canonical source for tags, lens precedence, the
@@ -28,7 +28,7 @@ and examples below illustrate that contract.
 2. Collect the diff or file set for the mode above. Nothing resolves → say so and
    stop; never guess a ref.
 3. For each hunk (audit mode: each file) walk the lenses in precedence order
-   YAGNI → KISS → DRY → SOLID. Stop at the first lens that says delete or inline —
+   YAGNI → DRY → KISS → SOLID. Stop at the first lens that says delete or inline —
    do not stack a SOLID finding on code you want removed.
 4. Before flagging any SOLID finding that would ADD an abstraction, grep the repo
    and container config to confirm the abstraction-earns-its-place criteria in
@@ -47,7 +47,7 @@ net: -<N> lines possible.
 stop: yes|no
 ```
 
-Use the canonical ordering and stop rules for the selected mode. Save `REVIEW.md`, emit the report and stop; `stop: no` is not authorization to apply fixes or invoke another skill.
+Use the canonical ordering and stop rules for the selected mode. Save `REVIEW.md`, then refresh the local HTML view of all records with the [record renderer](../../scripts/mage-render.mjs): `node <path-to-that-script> .mage/<slug>`. If Node is unavailable, say so and continue. Publish the rendered `index.html` with the host's own page-publishing tool when one exists (for example a Claude Artifact or a Cursor canvas); on first publish save the returned https URL to `artifact.url` in the same folder; later phases pass that URL back to the same tool to update it in place instead of creating a new page; when the host has no such tool, keep the local file and skip silently. Emit the report and stop; `stop: no` is not authorization to apply fixes or invoke another skill.
 
 ### Examples
 
@@ -68,5 +68,5 @@ stop: no
 
 - Correctness bugs, security holes, performance: out of scope — normal code review.
 - One smoke test on a new class is never bloat.
-- This writes only the phase report and its Git ignore entry if missing. It never edits reviewed source files or applies findings.
+- This writes only the phase report, its generated HTML view and its Git ignore entry if missing. It never edits reviewed source files or applies findings.
 - This is the required complexity checkpoint for a fully reviewed change, not proof of correctness, security or implementation completion. Unresolved required findings still block completion.

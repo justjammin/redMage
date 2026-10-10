@@ -9,11 +9,11 @@ Use `/rdm` to select one skill or `redMage:<phase>` to invoke it directly. If th
 
 ## Working context
 
-Read the target project's instructions and existing knowledge. Assume Beads and lean-ctx are absent. Use ordinary host file, search and shell tools; resume decisions and status from `.mage/` phase records. Integrate a tracker or indexed code tools only when the target project explicitly configures them. Do not install or initialize either for this workflow. Start directly with the needed phase.
+Read the target project's instructions and existing knowledge. Never install Beads or lean-ctx. Use ordinary host file, search and shell tools; resume decisions and status from `.mage/` phase records. If the `bd` command exists but the target project has no `.beads/` directory, ask the human once whether to initialize Beads in that project (`bd init --quiet --stealth`, which keeps Beads files out of the project's Git history); proceed with ordinary `.mage/` records if they decline or `bd` is absent. If the project has `.beads/`, use it as the tracker. Use lean-ctx or other indexed code tools only when the project configures them. Start directly with the needed phase.
 
 ## Artifact contract
 
-All generated phase records live together in the target project's `.mage/<slug>/`, using one feature slug. Link other phase records by their artifact filenames, such as `SPEC.md` and `DESIGN.md`. Create directories when first writing; keep `/.mage/` ignored by Git. Read existing project docs as inputs. Product source, tests and requested shipped documentation use normal project paths. The selector has no separate output file.
+All generated phase records live together in the target project's `.mage/<slug>/`, using one feature slug. Link other phase records by their artifact filenames, such as `SPEC.md` and `DESIGN.md`. Create directories when first writing. Do not edit `.gitignore` for `.mage/`, and do not stage or commit `.mage/` records. Read existing project docs as inputs. Product source, tests and requested shipped documentation use normal project paths. The selector has no separate output file. `scripts/mage-render.mjs` writes `.mage/<slug>/index.html`, a generated view of all records, published with the host's page-publishing tool when it has one (URL in `artifact.url` beside it); never edit it by hand.
 
 Use only the filenames below. Existing numbered records require manual renaming and internal-link updates before resuming; do not fall back to them, migrate them automatically, or create duplicate records. Report missing prerequisites and stop without invoking another skill.
 
@@ -33,7 +33,7 @@ Use only the filenames below. Existing numbered records require manual renaming 
 3. [Protect](../protect/SKILL.md): architecture/file shapes and solo evidence-based judging.
 4. [Chain](../chain/SKILL.md): concrete vertical-slice plan with an agent DAG and assignments.
 5. [Weave](../weave/SKILL.md): subagent implementation, independent reviews and integrated verification.
-6. [Dispel](../dispel/SKILL.md): main-session YAGNI → KISS → DRY → SOLID review of the complete task diff.
+6. [Dispel](../dispel/SKILL.md): main-session YAGNI → DRY → KISS → SOLID review of the complete task diff.
 
 Read the selected skill and its prerequisites. Reuse settled decisions and existing authorization; ask only for unresolved decisions needed by the current work. Report its artifact, verification evidence, readiness or blockers, and then stop. Starting another skill requires a separate user instruction; do not automatically advance or route blockers to another skill.
 
@@ -43,4 +43,4 @@ Dispel reviews complexity; retain correctness and security checks. Weave may rep
 
 - Installing only the router loses sibling references; install the plugin or complete bundle.
 - Restarting interviews loses settled decisions; resume from existing phase records.
-- Treating local records as deliverables adds repository noise; keep `.mage/` ignored.
+- Treating local records as deliverables adds repository noise; leave `.mage/` unstaged and out of `.gitignore`.

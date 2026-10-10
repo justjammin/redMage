@@ -5,7 +5,7 @@ description: Use when a specification needs architecture decisions or a proposed
 
 # 3. Protect
 
-Save this phase's record to `.mage/<slug>/DESIGN.md` in the target project. Reuse the feature slug across phases, create directories as needed, and keep `/.mage/` ignored by Git. To resume legacy numbered records, require manual renaming and internal-link updates first; do not fall back, migrate automatically, or create duplicates.
+Save this phase's record to `.mage/<slug>/DESIGN.md` in the target project. Reuse the feature slug across phases, create directories as needed. Do not edit `.gitignore` for `.mage/`, and do not stage or commit `.mage/` records. To resume legacy numbered records, require manual renaming and internal-link updates first; do not fall back, migrate automatically, or create duplicates.
 
 Read the specification at `.mage/<slug>/SPEC.md`. If it is missing, report the prerequisite and stop; do not use legacy numbered records or invoke another skill. The phase record contains architecture and review findings. Describe the simplest design satisfying the spec before adding patterns. Include:
 
@@ -17,6 +17,17 @@ Read the specification at `.mage/<slug>/SPEC.md`. If it is missing, report the p
 
 When observed pressures raise an object-design question, read the local [OOP design guide](../../references/oop-design.md) to shortlist candidates, then the relevant [pattern deep dives](../../references/pattern-deep-dives.md). Map selected participants to actual files, contracts, acceptance tests and failure behavior using its hydration checklist. Consult [Refactoring.Guru's catalog](https://refactoring.guru/design-patterns/catalog), open the relevant pattern pages and cite them beside decisions. Skip this object-pattern research when no such question exists. The general judge protocol and relevant architecture sources remain required: queues, replication and deployment topology need appropriate primary sources and Protect catalogs. Never force one pattern per requirement or treat a catalog as evidence that a pattern is necessary.
 
+## Principle passes
+
+Run the passes on the drafted design, in this order: YAGNI, DRY, KISS, SOLID. Each pass is a checkpoint. Finish one pass, record its findings and revisions in `DESIGN.md` under a heading for that pass, then start the next. A later pass never re-adds what an earlier pass removed. Definitions and tags: [principles](../dispel/references/principles.md).
+
+1. YAGNI: drop components, options, layers and abstractions with no requirement ID behind them. An abstraction stays only if it meets the "earns its place" criteria in principles.md.
+2. DRY: find the same rule or knowledge repeated across the proposed files and the existing code. Grep the existing code. Apply principles.md's rule of three. Prefer reusing an existing helper over a new one.
+3. KISS: choose the most direct flow and the fewest files that still meet the requirements. Undo any DRY merge that needs mode flags (fake DRY).
+4. SOLID: check responsibilities, dependency direction and test seams on what survived. Never add an abstraction YAGNI would reject.
+
+Record each checkpoint's findings in the finding format below (severity, failure, target, proof, smallest fix), or "none". P0/P1 findings block the next checkpoint until the controller revises the design.
+
 Run Protect in REVIEW mode with solo judging against the saved spec and architecture fixed point. Use SELECT when comparing undecided candidates, then REVIEW the authored choice. Read the relevant Protect catalogs and judge protocol. Protect reports findings without editing its review target; the controller applies justified revisions. Unresolved blockers prevent dependent planning. Keep unsupported choices as Investigate with an evidence-gathering action, not as approved architecture. Reconcile requirement changes with the spec and user decisions before continuing.
 
 ## Local judging contract
@@ -25,4 +36,4 @@ Run solo; never auto-enable a tribunal. Read [judge protocol](references/judge-p
 
 Report each finding with severity, failure, target, proof and smallest fix. P0 means data loss/security exposure or unreachable acceptance; P1 means material failure-path weakness; P2 means consequential ambiguity. Apply requires grounded evidence, Reject names absent pressure or a simpler sufficient option, Investigate names missing evidence and how to obtain it. No manufactured findings.
 
-The reviewer never edits its target. The controller revises it and resolves P0/P1 design blockers before marking the design ready for planning. Ask about unresolved consequential decisions and pause dependent work rather than invoking another skill. Save `DESIGN.md`, report the choice, costs, rejected alternatives and readiness or blockers, then stop. [Chain](../chain/SKILL.md) requires a separate invocation.
+The reviewer never edits its target. The controller revises it and resolves P0/P1 design blockers before marking the design ready for planning. Ask about unresolved consequential decisions and pause dependent work rather than invoking another skill. Save `DESIGN.md`, then refresh the local HTML view of all records with the [record renderer](../../scripts/mage-render.mjs): `node <path-to-that-script> .mage/<slug>`. If Node is unavailable, say so and continue. Publish the rendered `index.html` with the host's own page-publishing tool when one exists (for example a Claude Artifact or a Cursor canvas); on first publish save the returned https URL to `artifact.url` in the same folder; later phases pass that URL back to the same tool to update it in place instead of creating a new page; when the host has no such tool, keep the local file and skip silently. Report the choice, costs, rejected alternatives and readiness or blockers, then stop. [Chain](../chain/SKILL.md) requires a separate invocation.

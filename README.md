@@ -63,7 +63,7 @@ This package is available from the checkout/GitHub, not published to the npm reg
 | **3. Protect** | Raise a ward against fragile design. | Choose file shapes and patterns, then challenge them with evidence. |
 | **4. Chain** | Link each spell to the next. | Plan independently testable vertical slices, an agent DAG, assignments and verification. |
 | **5. Weave** | Cast through a coordinated party. | Dispatch scoped subagents, implement, test, and review the result. |
-| **6. Dispel** | Strip away needless enchantments. | Review through YAGNI, KISS, DRY, and SOLID; name what can be simplified. |
+| **6. Dispel** | Strip away needless enchantments. | Review through YAGNI, DRY, KISS, and SOLID; name what can be simplified. |
 
 You steer the important decisions. Invoke one skill, review its output, then choose when to continue. `/rdm` selects one skill; when none is specified, it asks which to run. Missing prerequisites or unresolved decisions pause dependent work instead of automatically starting another skill.
 
@@ -82,7 +82,7 @@ Each phase saves its working documents under `.mage/` in the target project:
 | Weave | `.mage/<slug>/RESULTS.md` |
 | Dispel | `.mage/<slug>/REVIEW.md` |
 
-Keep all feature documents in the same folder and use the exact filenames above in references. Scan records discovery and decisions; Analyze turns those into the formal specification. The selector writes no separate document. Keep `/.mage/` ignored by Git so decisions, plans and review evidence remain local. Product source, tests and explicitly requested shipped documentation stay in their normal project locations. Existing project knowledge remains readable without being moved or rewritten.
+Keep all feature documents in the same folder and use the exact filenames above in references. Scan records discovery and decisions; Analyze turns those into the formal specification. The selector writes no separate document. redMage never edits `.gitignore` and never commits `.mage/`, so decisions, plans and review evidence remain local. Product source, tests and explicitly requested shipped documentation stay in their normal project locations. Existing project knowledge remains readable without being moved or rewritten.
 
 Only the new artifact names are supported. Before resuming an existing feature, manually rename its numbered phase records and update their internal links. Skills do not fall back to legacy names, automatically migrate records, or create duplicate outputs.
 
@@ -90,8 +90,12 @@ Only the new artifact names are supported. Before resuming an existing feature, 
 
 After initial slice review, Weave allows at most two correction/re-review rounds, each with covering tests and independent re-review. Acceptance ends the loop early; required failures after round two remain blocked without an automatic third round. Weave can report implementation complete while complexity review is pending. A separate Dispel invocation produces `REVIEW.md` and is required before the change is fully reviewed; unresolved required findings still block completion. No skill starts the next one automatically, and Dispel's `stop: no` never authorizes fixes or continuation.
 
-Start with the selected skill; no setup script or Python prerequisite is required. Beads and lean-ctx are not required or assumed installed. Ordinary host file, search and shell tools plus `.mage/` records are the default; existing project-configured trackers and code indexes are optional integrations. Weave requires host subagent support for independent implementation and review.
+Start with the selected skill; no setup script or Python prerequisite is required. Beads is optional and lean-ctx is not required. redMage never installs either. When `bd` is installed but the project has no `.beads/`, redMage asks once whether to run `bd init --quiet --stealth` (Beads files stay out of the project's Git history); with `.beads/` present, Chain creates one issue per slice and Weave claims and closes them. Otherwise ordinary host file, search and shell tools plus `.mage/` records are the default. Weave requires host subagent support for independent implementation and review.
+
+## Record viewer
+
+After saving a record, each phase runs `node scripts/mage-render.mjs .mage/<slug>` (Node 18+, zero dependencies). It renders every record in the folder, plus `.mage/CONTEXT.md` and `.mage/adr/`, into one self-contained light/dark page at `.mage/<slug>/index.html`: a phase rail and one tab per record. Tabs follow phase order: Discovery, PRD, Spec, TRD, Design, Plan, Results, Review, other `.md` files, Glossary, ADRs, then a generated Primitives tab listing the block shapes. The rail marks a phase Skipped when a later record exists without it; a TRD or PRD counts for Analyze when `SPEC.md` is absent. A `mermaid` fenced block renders as a diagram (mermaid is loaded from jsDelivr when the page opens; the source stays visible if it cannot load). If `.mage/<slug>/artifact.url` holds an `https://` URL, the header links to it as Published. Each phase publishes the page with the host's page-publishing tool when one exists (for example a Claude Artifact or a Cursor canvas), saves the first URL to `artifact.url`, and updates that same page later. The page is generated; rerun the script instead of editing it. `--out <file>` writes elsewhere.
 
 ## Development checks
 
-Run `npm test` to verify bundle installation, relative phase references and preservation of existing destinations. These are maintainer tests, not a user startup step.
+Run `npm test` to verify bundle installation, relative phase references, preservation of existing destinations and record rendering. These are maintainer tests, not a user startup step.
